@@ -20,8 +20,6 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-
         object : CountDownTimer(4000, 1000) {
             override fun onFinish() {
                 bottomNav.visibility = View.VISIBLE

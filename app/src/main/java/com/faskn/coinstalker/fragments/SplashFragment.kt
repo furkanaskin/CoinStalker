@@ -3,16 +3,14 @@ package com.faskn.coinstalker.fragments
 
 import android.os.Bundle
 import android.os.CountDownTimer
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
-import androidx.core.view.marginLeft
+import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.faskn.coinstalker.R
 import kotlinx.android.synthetic.main.fragment_splash.*
-import kotlinx.android.synthetic.main.fragment_splash.view.*
 
 
 class SplashFragment : Fragment() {
@@ -31,7 +29,7 @@ class SplashFragment : Fragment() {
         av_splash_animation.speed = 4f
         av_splash_animation.playAnimation()
 
-        object : CountDownTimer(4000, 1000) {
+        object : CountDownTimer(1000, 1000) {
             override fun onFinish() {
                 navigate(R.id.action_splashFragment_to_coinsFragment)
             }
