@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/coins"
+        android:icon="@drawable/coins"
+        android:title="@string/paralar"
+        android:orderInCategory="1"/>
+    <item
+        android:id="@+id/converter"
+        android:icon="@drawable/calculator"
+        android:title="@string/cevirici"
+        android:orderInCategory="2"/>
+</menu>

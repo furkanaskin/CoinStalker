@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Coin Stalker</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="loading">Yükleniyor</string>
+    <string name="paralar">Paralar</string>
+    <string name="cevirici">Çevirici</string>
+</resources>
