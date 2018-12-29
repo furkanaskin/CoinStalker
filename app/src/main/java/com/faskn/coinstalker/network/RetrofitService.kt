@@ -6,6 +6,6 @@ import retrofit2.Response
 import retrofit2.http.GET
 
 interface RetrofitService {
-    @GET("coins")
+    @GET("coins?base=TRY")
     fun getCoins(): Deferred<Response<MyResponse>>
 }

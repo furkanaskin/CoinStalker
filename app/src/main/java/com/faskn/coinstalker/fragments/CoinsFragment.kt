@@ -6,7 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.faskn.coinstalker.R
+import com.faskn.coinstalker.adapters.CoinAdapter
+import com.faskn.coinstalker.model.Coin
 import com.faskn.coinstalker.network.RetrofitFactory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -26,17 +30,21 @@ class CoinsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        val coinsRecyclerView = view.findViewById<RecyclerView>(R.id.container_coins)
+        coinsRecyclerView.layoutManager =
+                LinearLayoutManager(this.context, RecyclerView.VERTICAL, false)
+
         GlobalScope.launch(Dispatchers.Main) {
             val service = RetrofitFactory.makeRetrofitService()
 
             val coinsData = service.getCoins().await()
 
             if (coinsData.isSuccessful) {
-                //Bind data
+                val coins = coinsData.body()?.data!!.coins
+                val base = coinsData.body()?.data!!.base
+                coinsRecyclerView.adapter = CoinAdapter(coins as ArrayList<Coin>, base)
             }
         }
-
     }
-
-
 }

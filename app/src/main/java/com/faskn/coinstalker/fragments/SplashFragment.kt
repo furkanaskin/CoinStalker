@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import com.bumptech.glide.Glide
 import com.faskn.coinstalker.R
 import kotlinx.android.synthetic.main.fragment_splash.*
 
@@ -26,10 +27,12 @@ class SplashFragment : Fragment() {
         val animationBlink = AnimationUtils.loadAnimation(this.context, R.anim.blink)
 
         av_splash_animation.setAnimation("splashAnimation.json")
-        av_splash_animation.speed = 4f
+        av_splash_animation.speed = 3f
         av_splash_animation.playAnimation()
 
-        object : CountDownTimer(1000, 1000) {
+        Glide.with(view.context).load(R.drawable.coinranking).into(iv_coinRanking_logo)
+
+        object : CountDownTimer(4000, 1000) {
             override fun onFinish() {
                 navigate(R.id.action_splashFragment_to_coinsFragment)
             }

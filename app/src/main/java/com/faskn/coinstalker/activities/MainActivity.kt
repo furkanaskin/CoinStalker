@@ -20,13 +20,14 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        object : CountDownTimer(4000, 1000) {
+        bottomNav.visibility = View.GONE
+
+        object : CountDownTimer(5000, 1000) {
             override fun onFinish() {
                 bottomNav.visibility = View.VISIBLE
             }
 
             override fun onTick(millisUntilFinished: Long) {
-                bottomNav.visibility = View.GONE
             }
 
         }.start()

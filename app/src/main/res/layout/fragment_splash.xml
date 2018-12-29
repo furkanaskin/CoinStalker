@@ -19,12 +19,49 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/av_splash_animation"
         android:layout_centerInParent="true"
+        android:ellipsize="end"
+        android:maxLength="13"
+        android:maxLines="1"
         android:text="@string/loading"
         android:textColor="#FF8F00"
         android:textSize="18sp"
-        android:textStyle="bold"
-        android:maxLines="1"
-        android:maxLength="13"
-        android:ellipsize="end"/>
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp">
+
+        <ImageView
+            android:id="@+id/iv_coinRanking_logo"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="30dp"
+            android:src="@drawable/coinranking" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="40dp"
+            android:paddingBottom="5dp"
+            android:text="CoinRanking"
+            android:textColor="@color/colorCoinRanking"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/tv_data_provider"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="70dp"
+        android:text="Data provided in party by"
+        android:textColor="@android:color/white" />
+
 
 </RelativeLayout>
