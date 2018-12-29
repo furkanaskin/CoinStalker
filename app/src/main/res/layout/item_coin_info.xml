@@ -10,9 +10,10 @@
         android:layout_height="match_parent"
         android:layout_margin="8dp"
         app:cardCornerRadius="8dp"
-        app:cardElevation="6dp">
+        app:cardElevation="4dp">
 
         <RelativeLayout
+            android:id="@+id/rv_card_main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorCardBackground">
@@ -28,15 +29,15 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_alignParentStart="true"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="40dp" />
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp" />
 
             <TextView
                 android:id="@+id/tv_coinShortName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="36dp"
                 android:layout_toEndOf="@id/iv_coinLogo"
                 android:text="CoinName"
                 android:textColor="@android:color/white"
@@ -81,6 +82,9 @@
                 android:textStyle="bold" />
 
         </RelativeLayout>
+
+
     </com.google.android.material.card.MaterialCardView>
+
 
 </LinearLayout>

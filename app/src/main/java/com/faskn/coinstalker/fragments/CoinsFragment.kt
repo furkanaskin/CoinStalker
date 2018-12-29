@@ -12,6 +12,7 @@ import com.faskn.coinstalker.R
 import com.faskn.coinstalker.adapters.CoinAdapter
 import com.faskn.coinstalker.model.Coin
 import com.faskn.coinstalker.network.RetrofitFactory
+import kotlinx.android.synthetic.main.fragment_coins.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -29,7 +30,7 @@ class CoinsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        pb_coins.visibility = View.VISIBLE
 
         val coinsRecyclerView = view.findViewById<RecyclerView>(R.id.container_coins)
         coinsRecyclerView.layoutManager =
@@ -41,6 +42,7 @@ class CoinsFragment : Fragment() {
             val coinsData = service.getCoins().await()
 
             if (coinsData.isSuccessful) {
+                pb_coins.visibility = View.GONE
                 val coins = coinsData.body()?.data!!.coins
                 val base = coinsData.body()?.data!!.base
                 coinsRecyclerView.adapter = CoinAdapter(coins as ArrayList<Coin>, base)

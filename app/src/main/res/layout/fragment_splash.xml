@@ -60,7 +60,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="70dp"
-        android:text="Data provided in party by"
+        android:text="İçerik sağlayıcı taraf"
         android:textColor="@android:color/white" />
 
 
