@@ -20,51 +20,48 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:maxHeight="120dp"
+                android:layout_height="150dp"
+                android:maxHeight="150dp"
                 android:src="@drawable/gradient_card" />
 
             <ImageView
                 android:id="@+id/iv_coinLogo"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="16dp" />
-
-            <TextView
-                android:id="@+id/tv_coinShortName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="36dp"
-                android:layout_toEndOf="@id/iv_coinLogo"
-                android:text="CoinName"
-                android:textColor="@android:color/white"
-                android:textStyle="bold" />
+                android:layout_alignTop="@id/tv_coinFullName"
+                android:layout_marginStart="16dp" />
 
             <TextView
                 android:id="@+id/tv_coinFullName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tv_coinShortName"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="20dp"
-                android:layout_toEndOf="@id/iv_coinLogo"
-                android:text="CoinFullName"
+                android:layout_alignBottom="@id/tv_coin_price"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@id/tv_marketcap"
+                android:text="@string/coinname"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_coinShortName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_coinFullName"
+                android:layout_alignTop="@id/tv_chance"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@id/tv_marketcap"
+                android:text="@string/coinname"
                 android:textColor="@color/colorDarkGray" />
 
             <TextView
                 android:id="@+id/tv_coin_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="30dp"
+                android:layout_alignStart="@id/tv_chance"
+                android:layout_marginTop="20dp"
                 android:maxLength="9"
                 android:maxLines="1"
-                android:text="82132813"
+                android:text="@string/dummyValue"
                 android:textColor="@android:color/white"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -77,24 +74,93 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="46dp"
-                android:text="2178372813"
+                android:text="@string/dummyValue"
                 android:textColor="@android:color/white"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_coin_volume"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_coin_change"
+                android:layout_alignStart="@id/tv_coin_change"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/dummyValue"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_volume"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@id/tv_chance"
+                android:layout_alignTop="@id/tv_coin_volume"
+                android:text="@string/hacim" />
+
+            <TextView
+                android:id="@+id/tv_maxPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@id/tv_chance"
+                android:layout_alignTop="@id/tv_marketcap"
+                android:text="@string/en_yks" />
+
+            <TextView
+                android:id="@+id/tv_coin_maxPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@id/tv_coin_change"
+                android:layout_alignTop="@id/tv_marketcap"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="0dp"
+                android:text="@string/dummyValue"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_marketcap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_volume"
+                android:layout_alignStart="@id/iv_coinLogo"
+                android:layout_marginTop="10dp"
+                android:text="@string/piyasa_degeri" />
+
+            <TextView
+                android:id="@+id/tv_coin_marketcap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/tv_marketcap"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="30dp"
+                android:layout_toEndOf="@id/tv_marketcap"
+                android:text="@string/dummyValue"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_chance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/tv_coin_change"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="10dp"
+                android:layout_toStartOf="@id/tv_coin_change"
+                android:text="@string/degisim" />
 
             <ImageView
                 android:id="@+id/iv_chance_arrow"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_alignTop="@id/tv_coin_change"
-                android:layout_marginTop="-6dp"
                 android:layout_marginStart="-50dp"
+                android:layout_marginTop="-6dp"
                 android:layout_toEndOf="@id/tv_coin_change"
                 android:src="@drawable/arrow_up" />
 
         </RelativeLayout>
 
-
     </com.google.android.material.card.MaterialCardView>
-
 
 </LinearLayout>

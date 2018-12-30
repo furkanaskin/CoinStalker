@@ -6,4 +6,10 @@
     <string name="loading">Yükleniyor</string>
     <string name="paralar">Paralar</string>
     <string name="cevirici">Çevirici</string>
+    <string name="coinname">CoinName</string>
+    <string name="dummyValue">82132813</string>
+    <string name="hacim">Hacim</string>
+    <string name="en_yks">En Yks.</string>
+    <string name="piyasa_degeri">Piyasa Değeri</string>
+    <string name="degisim">Değişim</string>
 </resources>

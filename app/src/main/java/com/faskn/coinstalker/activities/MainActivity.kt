@@ -37,7 +37,7 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         val page: Int = item.itemId
-        val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()!!
+        val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
         when (page) {
             R.id.menu_item_converter -> {
                 transaction.replace(R.id.container_fragment, ConverterFragment()).commitNow()

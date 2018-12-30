@@ -8,4 +8,5 @@ import retrofit2.http.GET
 interface RetrofitService {
     @GET("coins?base=TRY&sort=price&limit=100")
     fun getCoins(): Deferred<Response<MyResponse>>
+
 }
