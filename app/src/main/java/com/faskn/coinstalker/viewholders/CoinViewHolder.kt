@@ -3,6 +3,7 @@ package com.faskn.coinstalker.viewholders
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.net.Uri
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -28,12 +29,19 @@ class CoinViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         val ivCoinLogo = view.findViewById(R.id.iv_coinLogo) as ImageView
         val ivChanceArrow = view.findViewById(R.id.iv_chance_arrow) as ImageView
 
+
+
         txtShortCoinName.text = coin.symbol
         txtFullCoinName.text = coin.name
         txtPrice.text = priceBeautifier(coin.price, base.sign)
         txtChange.text = coin.change.toString()
         txtVolume.text = volumeBeautifier(coin.volume.toString(), base.sign)
-        txtMarketCap.text = volumeBeautifier(coin.marketCap.toString(), base.sign)
+        try {
+            txtMarketCap.text = volumeBeautifier(coin.marketCap.toString(), base.sign)
+        } catch (e: Exception) {
+            txtMarketCap.text = "N/A"
+            Log.v("bugCatcher", "${coin.name} Market Cap cannot found.")
+        }
         txtMaxPrice.text = priceBeautifier(coin.allTimeHigh.price, base.sign)
         // Set green if + else set red (change)
         if (coin.change < 0) {
@@ -50,6 +58,7 @@ class CoinViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
         val uri: Uri = Uri.parse(coin.iconUrl)
         GlideToVectorYou.justLoadImage(view.context as Activity, uri, ivCoinLogo)
+
     }
 
     private fun priceBeautifier(price: BigDecimal, sign: String): String {
@@ -71,7 +80,7 @@ class CoinViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
             10 -> sign + volume.substring(0, 1) + "." + volume.substring(1, 3) + "Mr"
             11 -> sign + volume.substring(0, 2) + "." + volume.substring(2, 4) + "Mr"
             12 -> sign + volume.substring(0, 3) + "." + volume.substring(3, 5) + "Mr"
-            else -> ""
+            else -> sign + volume
         }
     }
 }
