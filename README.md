@@ -1,3 +1,9 @@
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/furkanaskin/CoinStalker/issues)
+[![Awesome Kotlin Badge](https://kotlin.link/awesome-kotlin.svg)](https://github.com/KotlinBy/awesome-kotlin)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c16264cd5a0b4474a0768002b2c2e070)](https://www.codacy.com/app/furkanaskin/CoinStalker?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=furkanaskin/CoinStalker&amp;utm_campaign=Badge_Grade)
+[![API](https://img.shields.io/badge/API-19%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=19)
+
+
 # CoinStalker
 This project about cryptocurrency coins. I create this project for improving my skills. If you have good ideas about that project you can open PR or issue!
 
@@ -22,3 +28,6 @@ This project about cryptocurrency coins. I create this project for improving my 
 
  - TDD with UI/Unit tests
  - Modularize project
+## License
+
+[MIT](https://github.com/furkanaskin/CoinStalker/blob/master/LICENSE)
