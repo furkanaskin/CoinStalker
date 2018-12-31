@@ -7,6 +7,8 @@ This project about cryptocurrency coins. I create this project for improving my 
  - [AAC-Navigation](https://developer.android.com/topic/libraries/architecture/navigation/)
  - [Kotlin Coroutines](https://github.com/Kotlin/kotlinx.coroutines)
  - [Kotlin Coroutine Adapter](https://github.com/JakeWharton/retrofit2-kotlin-coroutines-adapter)
+ - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
+ - [LiveData](https://developer.android.com/topic/libraries/architecture/livedata)
  - [Gson](https://github.com/google/gson)
  - [Retrofit](https://square.github.io/retrofit/)
  - [Glide](https://github.com/bumptech/glide)
