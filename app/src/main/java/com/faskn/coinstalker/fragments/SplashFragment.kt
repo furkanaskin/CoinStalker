@@ -16,7 +16,11 @@ import kotlinx.android.synthetic.main.fragment_splash.*
 
 class SplashFragment : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_splash, container, false)
     }
@@ -25,6 +29,8 @@ class SplashFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val animationBlink = AnimationUtils.loadAnimation(this.context, R.anim.blink)
+        val animationFadein = AnimationUtils.loadAnimation(this.context, R.anim.fade_in)
+        val animationFadeout = AnimationUtils.loadAnimation(this.context, R.anim.fade_out)
 
         av_splash_animation.setAnimation("splashAnimation.json")
         av_splash_animation.speed = 3f
@@ -32,10 +38,26 @@ class SplashFragment : Fragment() {
 
         Glide.with(view.context).load(R.drawable.coinranking).into(iv_coinRanking_logo)
 
+        iv_coinstalker.visibility = View.GONE
+
         object : CountDownTimer(4000, 1000) {
             override fun onFinish() {
-                navigate(R.id.action_splashFragment_to_coinsFragment)
+                av_splash_animation.visibility = View.GONE
+                tv_loading.startAnimation(animationFadeout)
+                tv_loading.visibility = View.GONE
+                iv_coinstalker.visibility = View.VISIBLE
+                iv_coinstalker.startAnimation(animationFadein)
+
+                object : CountDownTimer(3000, 1000) {
+                    override fun onFinish() {
+                        navigate(R.id.action_splashFragment_to_coinsFragment)
+                    }
+
+                    override fun onTick(millisUntilFinished: Long) {
+                    }
+                }.start()
             }
+
             override fun onTick(millisUntilFinished: Long) {
                 tv_loading.startAnimation(animationBlink)
                 tv_loading.append(".")

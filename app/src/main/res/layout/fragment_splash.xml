@@ -13,6 +13,12 @@
         android:layout_centerInParent="true"
         app:lottie_loop="true" />
 
+    <ImageView
+        android:id="@+id/iv_coinstalker"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:src="@drawable/coinstalker"
+        android:layout_centerInParent="true" />
     <TextView
         android:id="@+id/tv_loading"
         android:layout_width="wrap_content"

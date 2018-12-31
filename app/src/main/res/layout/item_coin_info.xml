@@ -26,8 +26,8 @@
 
             <ImageView
                 android:id="@+id/iv_coinLogo"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_alignTop="@id/tv_coinFullName"
                 android:layout_marginStart="16dp" />
 

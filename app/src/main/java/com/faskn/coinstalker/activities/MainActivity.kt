@@ -22,7 +22,7 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
 
         bottomNav.visibility = View.GONE
 
-        object : CountDownTimer(5000, 1000) {
+        object : CountDownTimer(8000, 1000) {
             override fun onFinish() {
                 bottomNav.visibility = View.VISIBLE
             }

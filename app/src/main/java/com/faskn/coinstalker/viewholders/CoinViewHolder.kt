@@ -43,6 +43,7 @@ class CoinViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
             Log.v("bugCatcher", "${coin.name} Market Cap cannot found.")
         }
         txtMaxPrice.text = priceBeautifier(coin.allTimeHigh.price, base.sign)
+
         // Set green if + else set red (change)
         if (coin.change < 0) {
             txtChange.text = coin.change.toString()
