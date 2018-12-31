@@ -18,11 +18,7 @@ This project about cryptocurrency coins. I create this project for improving my 
  - [Lottie for Android](https://github.com/airbnb/lottie-android)
  - [Material Design](https://material.io/develop/android/docs/getting-started/)
  
-### Testing
- - Will be added in the future.
-
 ## Future Development
 
  - TDD with UI/Unit tests
  - Modularize project
- - MVVM Arch.
