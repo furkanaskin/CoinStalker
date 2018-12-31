@@ -12,4 +12,5 @@
     <string name="en_yks">En Yks.</string>
     <string name="piyasa_degeri">Piyasa Değeri</string>
     <string name="degisim">Değişim</string>
+    <string name="connection_failed">Oops.. İnternet bağlantısı kurulamadı..</string>
 </resources>

@@ -14,10 +14,18 @@
         <action
             android:id="@+id/action_splashFragment_to_coinsFragment"
             app:destination="@id/coinsFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_connectionFragment"
+            app:destination="@id/connectionFragment" />
     </fragment>
     <fragment
         android:id="@+id/coinsFragment"
         android:name="com.faskn.coinstalker.fragments.CoinsFragment"
         android:label="fragment_coins"
         tools:layout="@layout/fragment_coins" />
+    <fragment
+        android:id="@+id/connectionFragment"
+        android:name="com.faskn.coinstalker.fragments.ConnectionFragment"
+        android:label="fragment_connection"
+        tools:layout="@layout/fragment_connection" />
 </navigation>

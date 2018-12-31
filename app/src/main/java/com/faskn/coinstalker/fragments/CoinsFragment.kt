@@ -19,6 +19,7 @@ import kotlinx.coroutines.launch
 
 class CoinsFragment : Fragment() {
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -38,7 +39,6 @@ class CoinsFragment : Fragment() {
 
         GlobalScope.launch(Dispatchers.Main) {
             val service = RetrofitFactory.makeRetrofitService()
-
             val coinsData = service.getCoins().await()
 
             if (coinsData.isSuccessful) {
@@ -49,4 +49,6 @@ class CoinsFragment : Fragment() {
             }
         }
     }
+
+
 }
