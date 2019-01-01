@@ -40,5 +40,13 @@
         app:strokeColor="@color/colorPrimaryDark"
         app:strokeWidth="1dp" />
 
+    <ProgressBar
+        android:id="@+id/pb_connection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/tv_error"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="35dp"
+        android:visibility="gone" />
 
 </RelativeLayout>

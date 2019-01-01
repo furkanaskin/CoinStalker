@@ -5,11 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.faskn.coinstalker.R
 import com.faskn.coinstalker.adapters.CoinAdapter
+import com.faskn.coinstalker.base.BaseFragment
 import com.faskn.coinstalker.model.Coin
 import com.faskn.coinstalker.network.RetrofitFactory
 import kotlinx.android.synthetic.main.fragment_coins.*
@@ -18,7 +18,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 
-class CoinsFragment : Fragment() {
+class CoinsFragment : BaseFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,

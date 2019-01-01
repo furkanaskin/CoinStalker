@@ -13,7 +13,6 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
 
 
     private val bottomNav by lazy { findViewById<BottomNavigationView>(R.id.bottom_navigation) }
-    private var backPressCounter = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
