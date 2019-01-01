@@ -1,15 +1,17 @@
 package com.faskn.coinstalker.activities
 
 import android.os.Bundle
-import android.view.MenuItem
-import androidx.fragment.app.FragmentTransaction
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import com.faskn.coinstalker.R
 import com.faskn.coinstalker.base.BaseActivity
-import com.faskn.coinstalker.fragments.CoinsFragment
-import com.faskn.coinstalker.fragments.ConverterFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
+class MainActivity : BaseActivity() {
 
 
     private val bottomNav by lazy { findViewById<BottomNavigationView>(R.id.bottom_navigation) }
@@ -17,27 +19,33 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        bottomNav.setOnNavigationItemSelectedListener(this)
+
+        NavigationUI.setupWithNavController(
+            bottomNav,
+            Navigation.findNavController(this, R.id.container_fragment)
+        ) // here navView using Kotlin extension to avoid findviewbyid
 
     }
 
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        val page: Int = item.itemId
-        val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
-        when (page) {
-            R.id.menu_item_converter -> {
-                transaction.replace(
-                    R.id.container_fragment,
-                    ConverterFragment(),
-                    "ConverterFragment"
-                ).commitNow()
+
+    override fun onBackPressed() {
+        when (NavHostFragment.findNavController(container_fragment).currentDestination!!.id) {
+            R.id.coinsFragment -> {
+                val builder = AlertDialog.Builder(this@MainActivity)
+                builder.setMessage("Gerçekten çıkış yapmak istiyor musunuz?")
+
+                builder.setPositiveButton("Evet") { dialog, which ->
+                    android.os.Process.killProcess(android.os.Process.myPid())
+                }
+                builder.setNegativeButton("Hayır") { dialog, which ->
+                    Toast.makeText(this, "Pencere kapatıldı.", Toast.LENGTH_SHORT).show()
+                }
+                val dialog: AlertDialog = builder.create()
+                dialog.show()
             }
-            R.id.menu_item_coins -> {
-                transaction.replace(R.id.container_fragment, CoinsFragment(), "CoinsFragment")
-                    .commitNow()
+            else -> {
+                super.onBackPressed()
             }
         }
-        return true
     }
-
 }

@@ -22,7 +22,13 @@
         android:id="@+id/coinsFragment"
         android:name="com.faskn.coinstalker.fragments.CoinsFragment"
         android:label="fragment_coins"
-        tools:layout="@layout/fragment_coins" />
+        tools:layout="@layout/fragment_coins">
+        <action
+            android:id="@+id/action_coinsFragment_pop"
+            app:popUpTo="@id/coinsFragment"
+            app:popUpToInclusive="true"
+            app:destination="@id/coinsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/connectionFragment"
         android:name="com.faskn.coinstalker.fragments.ConnectionFragment"
@@ -31,5 +37,11 @@
         <action
             android:id="@+id/action_connectionFragment_to_coinsFragment"
             app:destination="@id/coinsFragment" />
+
     </fragment>
+    <fragment
+        android:id="@+id/converterFragment"
+        android:name="com.faskn.coinstalker.fragments.ConverterFragment"
+        android:label="fragment_converter"
+        tools:layout="@layout/fragment_converter" />
 </navigation>
