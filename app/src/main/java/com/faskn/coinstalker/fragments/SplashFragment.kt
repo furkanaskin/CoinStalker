@@ -13,13 +13,16 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
-import com.faskn.coinstalker.CoinsViewModel
 import com.faskn.coinstalker.R
+import com.faskn.coinstalker.viewmodels.CoinsViewModel
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_splash.*
 
 
 class SplashFragment : Fragment() {
 
+
+    private val bottomNav by lazy { activity?.bottom_navigation }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -55,24 +58,6 @@ class SplashFragment : Fragment() {
                 iv_coinstalker.visibility = View.VISIBLE
                 iv_coinstalker.startAnimation(animationFadein)
 
-                viewModel.checkConnectionStatus()
-                viewModel.connectionStatusLiveData.observe(this@SplashFragment, Observer { status ->
-                    if (status) {
-                        Log.v("qqq", "Connection successful.")
-                    } else {
-                        navigate(R.id.action_splashFragment_to_connectionFragment)
-                        Log.v("qqq", "No internet connection.")
-                    }
-                })
-
-                object : CountDownTimer(3000, 1000) {
-                    override fun onFinish() {
-                        navigate(R.id.action_splashFragment_to_coinsFragment)
-                    }
-
-                    override fun onTick(millisUntilFinished: Long) {
-                    }
-                }.start()
             }
 
             override fun onTick(millisUntilFinished: Long) {
@@ -81,6 +66,26 @@ class SplashFragment : Fragment() {
             }
 
         }.start()
+
+        object : CountDownTimer(8000, 1000) {
+            override fun onFinish() {
+                viewModel.checkConnectionStatus()
+                viewModel.connectionStatusLiveData.observe(this@SplashFragment, Observer { status ->
+                    if (status) {
+                        navigate(R.id.action_splashFragment_to_coinsFragment)
+                        bottomNav?.visibility = View.VISIBLE
+                        Log.v("qqq", "Connection successful.")
+                    } else {
+                        navigate(R.id.action_splashFragment_to_connectionFragment)
+                        bottomNav?.visibility = View.GONE
+                        Log.v("qqq", "No internet connection.")
+                    }
+                })
+            }
+
+            override fun onTick(millisUntilFinished: Long) {
+            }
+        }.start()
     }
 
     private fun navigate(action: Int) {
@@ -88,6 +93,5 @@ class SplashFragment : Fragment() {
             Navigation.findNavController(_view).navigate(action)
         }
     }
-
 
 }

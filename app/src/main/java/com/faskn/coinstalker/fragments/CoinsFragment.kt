@@ -17,8 +17,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class CoinsFragment : Fragment() {
 
+class CoinsFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,6 +49,4 @@ class CoinsFragment : Fragment() {
             }
         }
     }
-
-
 }

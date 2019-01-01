@@ -1,4 +1,4 @@
-package com.faskn.coinstalker
+package com.faskn.coinstalker.viewmodels
 
 import android.app.Application
 import android.content.Context

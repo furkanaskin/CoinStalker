@@ -29,7 +29,7 @@
         android:maxLength="13"
         android:maxLines="1"
         android:text="@string/loading"
-        android:textColor="#FF8F00"
+        android:textColor="@color/colorPrettyOrange"
         android:textSize="18sp"
         android:textStyle="bold" />
 

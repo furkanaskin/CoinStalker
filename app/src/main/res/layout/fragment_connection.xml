@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.ConnectionFragment">
 
     <com.airbnb.lottie.LottieAnimationView
@@ -11,19 +11,34 @@
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_centerInParent="true"
+        app:lottie_autoPlay="true"
         app:lottie_fileName="warning.json"
-        app:lottie_loop="true"
-        app:lottie_autoPlay="true" />
+        app:lottie_loop="true" />
 
     <TextView
+        android:id="@+id/tv_error"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/connection_failed"
         android:layout_below="@+id/av_connection_animation"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/colorNegative"
-        android:textStyle="bold"
         android:layout_marginTop="30dp"
-        android:textSize="16sp" />
+        android:text="@string/connection_failed"
+        android:textColor="@color/colorPrettyOrange"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_tryagain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_error"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="@string/tekrar_dene"
+        app:backgroundTint="@android:color/transparent"
+        app:cornerRadius="4dp"
+        app:strokeColor="@color/colorPrimaryDark"
+        app:strokeWidth="1dp" />
+
 
 </RelativeLayout>

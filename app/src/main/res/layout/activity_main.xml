@@ -21,6 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@color/colorPrimary"
+        android:visibility="gone"
         app:menu="@menu/navigation_menu"/>
 
 </RelativeLayout>
