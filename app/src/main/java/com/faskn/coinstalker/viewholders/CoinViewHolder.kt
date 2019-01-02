@@ -60,6 +60,7 @@ class CoinViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         val uri: Uri = Uri.parse(coin.iconUrl)
         GlideToVectorYou.justLoadImage(view.context as Activity, uri, ivCoinLogo)
 
+
     }
 
     private fun priceBeautifier(price: BigDecimal, sign: String): String {

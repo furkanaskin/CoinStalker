@@ -23,7 +23,7 @@ class MainActivity : BaseActivity() {
         NavigationUI.setupWithNavController(
             bottomNav,
             Navigation.findNavController(this, R.id.container_fragment)
-        ) // here navView using Kotlin extension to avoid findviewbyid
+        )
 
     }
 

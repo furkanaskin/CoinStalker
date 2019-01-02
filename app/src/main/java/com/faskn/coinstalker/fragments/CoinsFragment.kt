@@ -5,17 +5,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.faskn.coinstalker.R
 import com.faskn.coinstalker.adapters.CoinAdapter
 import com.faskn.coinstalker.base.BaseFragment
 import com.faskn.coinstalker.model.Coin
-import com.faskn.coinstalker.network.RetrofitFactory
+import com.faskn.coinstalker.viewmodels.CoinsViewModel
 import kotlinx.android.synthetic.main.fragment_coins.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 
 class CoinsFragment : BaseFragment() {
@@ -33,20 +32,17 @@ class CoinsFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         pb_coins.visibility = View.VISIBLE
 
+        val viewModel = ViewModelProviders.of(this).get(CoinsViewModel::class.java) // Create vm
         val coinsRecyclerView = view.findViewById<RecyclerView>(R.id.container_coins)
         coinsRecyclerView.layoutManager =
                 LinearLayoutManager(this.context, RecyclerView.VERTICAL, false)
 
-        GlobalScope.launch(Dispatchers.Main) {
-            val service = RetrofitFactory.makeRetrofitService()
-            val coinsData = service.getCoins().await()
 
-            if (coinsData.isSuccessful) {
-                pb_coins.visibility = View.GONE
-                val coins = coinsData.body()?.data!!.coins
-                val base = coinsData.body()?.data!!.base
-                coinsRecyclerView.adapter = CoinAdapter(coins as ArrayList<Coin>, base)
-            }
-        }
+        viewModel.getCoins()
+        viewModel.coinsLiveData.observe(this@CoinsFragment, Observer { Data ->
+            val adapter = CoinAdapter(Data.coins as ArrayList<Coin>, Data.base)
+            coinsRecyclerView.swapAdapter(adapter, false)
+            pb_coins.visibility = View.GONE
+        })
     }
 }
