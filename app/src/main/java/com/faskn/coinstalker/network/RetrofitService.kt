@@ -1,5 +1,6 @@
 package com.faskn.coinstalker.network
 
+import com.faskn.coinstalker.network.responses.CoinHistoryResponse
 import com.faskn.coinstalker.network.responses.CoinInfoResponse
 import com.faskn.coinstalker.network.responses.CoinsResponse
 import kotlinx.coroutines.Deferred
@@ -13,5 +14,9 @@ interface RetrofitService {
 
     @GET("coin/{coinID}?base=TRY")
     fun getCoinData(@Path("coinID") coinID: Int): Deferred<Response<CoinInfoResponse>>
+
+    @GET("coin/{coinID}/history/24h?base=TRY")
+    fun getCoinHistory(@Path("coinID") coinID: Int): Deferred<Response<CoinHistoryResponse>>
+
 }
 

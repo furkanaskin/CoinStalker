@@ -2,7 +2,6 @@ package com.faskn.coinstalker.fragments
 
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,11 +26,18 @@ class CoinInfoFragment : Fragment() {
         val viewModel = ViewModelProviders.of(this).get(CoinsViewModel::class.java) // Create vm
         viewModel.getCoinInfo(getCoinID())
         viewModel.coinInfoLiveData.observe(this@CoinInfoFragment, Observer { Data ->
-            Log.v("qqq", Data.toString())
+
         })
+
+        viewModel.getCoinHistory(getCoinID())
+        viewModel.coinHistoryLiveData.observe(this@CoinInfoFragment, Observer {
+
+        })
+
     }
 
     private fun getCoinID(): Int {
         return CoinInfoFragmentArgs.fromBundle(this.arguments!!).coinID
     }
+
 }
