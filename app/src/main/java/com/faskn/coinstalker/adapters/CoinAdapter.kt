@@ -1,6 +1,7 @@
 package com.faskn.coinstalker.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.faskn.coinstalker.R
@@ -8,7 +9,11 @@ import com.faskn.coinstalker.model.Base
 import com.faskn.coinstalker.model.Coin
 import com.faskn.coinstalker.viewholders.CoinViewHolder
 
-class CoinAdapter(val coinList: ArrayList<Coin>, val base: Base) :
+class CoinAdapter(
+    private val coinList: ArrayList<Coin>,
+    val base: Base,
+    private val itemClickListener: (View, Int) -> Unit
+) :
     RecyclerView.Adapter<CoinViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CoinViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -22,6 +27,6 @@ class CoinAdapter(val coinList: ArrayList<Coin>, val base: Base) :
     }
 
     override fun onBindViewHolder(holder: CoinViewHolder, position: Int) {
-        holder.bind(coinList[position], base)
+        holder.bind(coinList[position], base, itemClickListener)
     }
 }

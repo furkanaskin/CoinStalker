@@ -16,9 +16,9 @@ import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
 import java.math.BigDecimal
 
 
-class CoinViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+class CoinViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
     @SuppressLint("SetTextI18n")
-    fun bind(coin: Coin, base: Base) {
+    fun bind(coin: Coin, base: Base, itemClickListener: (View, Int) -> Unit) {
         val txtShortCoinName = view.findViewById(R.id.tv_coinShortName) as TextView
         val txtFullCoinName = view.findViewById(R.id.tv_coinFullName) as TextView
         val txtPrice = view.findViewById(R.id.tv_coin_price) as TextView
@@ -60,7 +60,7 @@ class CoinViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         val uri: Uri = Uri.parse(coin.iconUrl)
         GlideToVectorYou.justLoadImage(view.context as Activity, uri, ivCoinLogo)
 
-
+        itemView.setOnClickListener { itemClickListener(view, coin.id) }
     }
 
     private fun priceBeautifier(price: BigDecimal, sign: String): String {
