@@ -1,9 +1,9 @@
-package com.faskn.coinstalker.network.Response
+package com.faskn.coinstalker.network.responses
 
 import com.faskn.coinstalker.model.Data
 import com.google.gson.annotations.SerializedName
 
-data class MyResponse(
+data class CoinsResponse(
     @SerializedName("data")
     val `data`: Data,
     @SerializedName("status")

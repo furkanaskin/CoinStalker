@@ -6,6 +6,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import com.faskn.coinstalker.model.CoinInfoData
 import com.faskn.coinstalker.model.Data
 import com.faskn.coinstalker.network.RetrofitFactory
 import kotlinx.coroutines.Dispatchers
@@ -27,6 +28,7 @@ class CoinsViewModel(application: Application) : AndroidViewModel(application) {
     val connectionStatusLiveData = MutableLiveData<Boolean>()
     val coinsLiveData = MutableLiveData<Data>()
     val progressLiveData = MutableLiveData<Boolean>()
+    val coinInfoLiveData = MutableLiveData<CoinInfoData>()
 
     fun checkConnectionStatus() {
 
@@ -52,6 +54,18 @@ class CoinsViewModel(application: Application) : AndroidViewModel(application) {
 
             Timer("RequestTimer", false).schedule(3000) {
                 getCoins()
+            }
+        }
+    }
+
+    fun getCoinInfo(coinID: Int) {
+        GlobalScope.launch(Dispatchers.Main) {
+            val service = RetrofitFactory.makeRetrofitService()
+            val coinInfoData = service.getCoinData(coinID).await()
+            val coinData = coinInfoData.body()!!.data
+
+            if (coinInfoData.isSuccessful) {
+                coinInfoLiveData.postValue(coinData)
             }
         }
     }

@@ -2,12 +2,15 @@ package com.faskn.coinstalker.fragments
 
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.faskn.coinstalker.R
-import kotlinx.android.synthetic.main.fragment_coin_info.*
+import com.faskn.coinstalker.viewmodels.CoinsViewModel
 
 class CoinInfoFragment : Fragment() {
 
@@ -21,7 +24,11 @@ class CoinInfoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        tv_info.text = getCoinID().toString()
+        val viewModel = ViewModelProviders.of(this).get(CoinsViewModel::class.java) // Create vm
+        viewModel.getCoinInfo(getCoinID())
+        viewModel.coinInfoLiveData.observe(this@CoinInfoFragment, Observer { Data ->
+            Log.v("qqq", Data.toString())
+        })
     }
 
     private fun getCoinID(): Int {
