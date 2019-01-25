@@ -5,9 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.faskn.coinstalker.R
@@ -40,12 +40,15 @@ class CoinsFragment : BaseFragment() {
 
 
         val itemOnClick: (View, Int) -> Unit = { _, id ->
-            Toast.makeText(this.context, id.toString(), Toast.LENGTH_SHORT).show()
+            val action = CoinsFragmentDirections.actionCoinsFragmentToCoinInfoFragment(id)
+            findNavController().navigate(action)
         }
-        viewModel.getCoins()
+
+        viewModel.getCoins() // Get data
         viewModel.coinsLiveData.observe(this@CoinsFragment, Observer { Data ->
+            // Observe the data
             val adapter = CoinAdapter(Data.coins as ArrayList<Coin>, Data.base, itemOnClick)
-            coinsRecyclerView.swapAdapter(adapter, false)
+            coinsRecyclerView.swapAdapter(adapter, false) // Pass data to adapter
             pb_coins.visibility = View.GONE
         })
     }

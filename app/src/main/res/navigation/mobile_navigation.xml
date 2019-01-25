@@ -10,7 +10,7 @@
         android:id="@+id/splashFragment"
         android:name="com.faskn.coinstalker.fragments.SplashFragment"
         android:label="fragment_splash"
-        tools:layout="@layout/fragment_splash" >
+        tools:layout="@layout/fragment_splash">
         <action
             android:id="@+id/action_splashFragment_to_coinsFragment"
             app:destination="@id/coinsFragment" />
@@ -25,9 +25,13 @@
         tools:layout="@layout/fragment_coins">
         <action
             android:id="@+id/action_coinsFragment_pop"
+            app:destination="@id/coinsFragment"
             app:popUpTo="@id/coinsFragment"
-            app:popUpToInclusive="true"
-            app:destination="@id/coinsFragment" />
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_coinsFragment_to_coinInfoFragment"
+            app:destination="@id/coinInfoFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/connectionFragment"
@@ -44,4 +48,14 @@
         android:name="com.faskn.coinstalker.fragments.ConverterFragment"
         android:label="fragment_converter"
         tools:layout="@layout/fragment_converter" />
+    <fragment
+        android:id="@+id/coinInfoFragment"
+        android:name="com.faskn.coinstalker.fragments.CoinInfoFragment"
+        android:label="fragment_coin_info"
+        tools:layout="@layout/fragment_coin_info">
+        <argument
+            android:name="coinID"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
 </navigation>
