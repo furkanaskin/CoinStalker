@@ -56,6 +56,7 @@ dependencies {
     annotationProcessor "android.arch.lifecycle:compiler:1.1.1"
     //SVG Loader
     implementation 'com.github.2coffees1team:GlideToVectorYou:v1.2.0'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0-alpha'
 
 }
 
