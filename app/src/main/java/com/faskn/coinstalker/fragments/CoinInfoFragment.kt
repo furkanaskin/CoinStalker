@@ -7,24 +7,29 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.faskn.coinstalker.R
+import com.faskn.coinstalker.base.BaseFragment
 import com.faskn.coinstalker.viewmodels.CoinsViewModel
 import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
+import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.formatter.IAxisValueFormatter
+import com.github.mikephil.charting.highlight.Highlight
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import kotlinx.android.synthetic.main.fragment_coin_info.*
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
 
-class CoinInfoFragment : Fragment() {
+class CoinInfoFragment : BaseFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,6 +41,12 @@ class CoinInfoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val animationFadein =
+            AnimationUtils.loadAnimation(this.context, com.faskn.coinstalker.R.anim.fade_in)
+
+        tv_selectedBar.visibility = View.GONE //Hide selected bar text
+
         val viewModel = ViewModelProviders.of(this).get(CoinsViewModel::class.java) // Create vm
         viewModel.getCoinInfo(getCoinID())
         viewModel.coinInfoLiveData.observe(this@CoinInfoFragment, Observer { Data ->
@@ -51,12 +62,11 @@ class CoinInfoFragment : Fragment() {
                 timestampArray.add(formattedTimeStamp)
                 barGroup.add(BarEntry(index.toFloat(), element.price.toFloat()))
             }
-            // creating dataset for Bar Group
+            // creating data set for Bar Group
             val barDataSet = BarDataSet(barGroup, "24 Saatlik değerler")
 
             barDataSet.color = ContextCompat.getColor(
-                this.context!!,
-                com.faskn.coinstalker.R.color.colorHoloBlue
+                this.context!!, R.color.colorPrimaryDark
             )
 
             val data = BarData(barDataSet)
@@ -80,17 +90,35 @@ class CoinInfoFragment : Fragment() {
             barChart.axisRight.textColor = Color.parseColor("#EF6C00")
             barChart.xAxis.textColor = Color.parseColor("#FFFFFF")
             barChart.data.setValueTextColor(Color.parseColor("#EF6C00"))
-            barChart.setPinchZoom(true)
-            barChart.data.setDrawValues(true)
-        })
+            barChart.axisLeft.isEnabled = false // Hide left axis
+            barChart.setVisibleXRangeMaximum((barGroup.size / 7).toFloat())
+            barChart.moveViewToX((barGroup.size).toFloat())
+            barChart.setPinchZoom(true) // enable zoom
+            barChart.data.setDrawValues(false) // hide values
 
+            barChart.setOnChartValueSelectedListener(object : OnChartValueSelectedListener {
+                override fun onNothingSelected() {
+                }
+
+                @SuppressLint("SetTextI18n")
+                override fun onValueSelected(e: Entry?, h: Highlight?) {
+                    val date = MyFormatter(timestampArray).getFormattedValue(
+                        e!!.x,
+                        axis = null
+                    )  // I just want to take formatted dateee !!!!
+
+                    tv_selectedBar.text = "${e.y}₺  $date"
+                    tv_selectedBar.visibility = View.VISIBLE
+                    tv_selectedBar.startAnimation(animationFadein)
+
+                }
+            })
+        })
     }
 
     private fun getCoinID(): Int {
         return CoinInfoFragmentArgs.fromBundle(this.arguments!!).coinID
     }
-
-
 }
 
 class MyFormatter(val data: ArrayList<Float>) : IAxisValueFormatter {
@@ -109,7 +137,6 @@ class MyFormatter(val data: ArrayList<Float>) : IAxisValueFormatter {
         val day = calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.ENGLISH)
         val hour = "${calendar.get(Calendar.HOUR_OF_DAY)}:${calendar.get(Calendar.MINUTE)}"
 
-        val formatted = "$month $day $hour"
-        return formatted
+        return "$month $day $hour"
     }
 }

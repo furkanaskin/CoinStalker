@@ -3,11 +3,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.CoinInfoFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.CoinInfoFragment"
+    android:background="@color/colorDarkGray">
 
-    <com.github.mikephil.charting.charts.BarChart
-        android:id="@+id/barChart"
+
+    <com.google.android.material.card.MaterialCardView
+        app:cardCornerRadius="4dp"
+        app:cardElevation="4dp"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_marginTop="8dp" />
+        android:layout_margin="8dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/gradient_graph"
+                android:contentDescription="@string/background" />
+
+            <TextView
+                android:id="@+id/tv_selectedBar"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:text="@string/dummyValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true" />
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/barChart"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_above="@id/tv_selectedBar" />
+        </RelativeLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+
 </FrameLayout>
