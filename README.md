@@ -24,6 +24,7 @@ This project about cryptocurrency coins. I create this project for improving my 
  - [Material CardView](https://material.io/develop/android/components/material-card-view/)
  - [Lottie for Android](https://github.com/airbnb/lottie-android)
  - [Material Design](https://material.io/develop/android/docs/getting-started/)
+ - [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart)
  
 ## Future Development
 
