@@ -11,7 +11,7 @@ This project about cryptocurrency coins. I create this project for improving my 
 ## Libraries Used
   
  - [AAC-Navigation](https://developer.android.com/topic/libraries/architecture/navigation/)
- - [AAC-Navigation SafeArgs](https://developer.android.com/topic/libraries/architecture/navigation/navigation-pass-data) //Pass data between destinations  
+ - [AAC-Navigation SafeArgs](https://developer.android.com/topic/libraries/architecture/navigation/navigation-pass-data) 
  - [Kotlin Coroutines](https://github.com/Kotlin/kotlinx.coroutines)
  - [Kotlin Coroutines Adapter](https://github.com/JakeWharton/retrofit2-kotlin-coroutines-adapter)
  - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
@@ -25,6 +25,7 @@ This project about cryptocurrency coins. I create this project for improving my 
  - [Lottie for Android](https://github.com/airbnb/lottie-android)
  - [Material Design](https://material.io/develop/android/docs/getting-started/)
  - [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart)
+ - [ExpandableLayout](https://github.com/AAkira/ExpandableLayout)
  
 ## Future Development
 
