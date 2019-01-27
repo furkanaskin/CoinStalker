@@ -1,53 +1,419 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorDarkGray"
+    android:paddingBottom="?attr/actionBarSize"
     tools:context=".fragments.CoinInfoFragment"
-    android:background="@color/colorDarkGray">
+    android:id="@+id/sv_fragmentInfo">
 
-
-    <com.google.android.material.card.MaterialCardView
-        app:cardCornerRadius="4dp"
-        app:cardElevation="4dp"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_margin="8dp">
+        android:layout_height="wrap_content">
 
-        <RelativeLayout
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_coin_info"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
 
-            <ImageView
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/gradient_graph"
-                android:contentDescription="@string/background" />
+                android:background="@drawable/gradient_graph">
 
-            <TextView
-                android:id="@+id/tv_selectedBar"
-                android:layout_marginBottom="8dp"
-                android:layout_marginEnd="8dp"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                android:text="@string/dummyValue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentEnd="true" />
+                <ImageView
+                    android:id="@+id/iv_info_coinLogo"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_margin="16dp" />
 
-            <com.github.mikephil.charting.charts.BarChart
-                android:id="@+id/barChart"
+                <TextView
+                    android:id="@+id/tv_info_coinName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_toEndOf="@id/iv_info_coinLogo"
+                    android:text="@string/blank"
+                    android:textColor="@android:color/white"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_info_coin_change"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_info_coinName"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_toEndOf="@id/iv_info_coinLogo"
+                    android:text="@string/blank"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/iv_info_chance_arrow"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_alignTop="@id/tv_info_coin_change"
+                    android:layout_marginTop="-6dp"
+                    android:layout_toEndOf="@id/tv_info_coin_change" />
+
+                <TextView
+                    android:id="@+id/tv_info_rank_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/blank"
+                    android:textColor="@android:color/white"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_info_coin_rank"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/tv_info_coin_change"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/blank"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_info_coin_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/iv_info_coinLogo"
+                    android:layout_alignStart="@id/iv_info_coinLogo"
+                    android:layout_alignEnd="@id/tv_info_rank_text"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/blank"
+                    android:textSize="12sp" />
+
+
+            </RelativeLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_graph"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_below="@id/card_coin_info"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="4dp"
-                android:layout_marginEnd="4dp"
-                android:layout_marginBottom="4dp"
-                android:layout_above="@id/tv_selectedBar" />
-        </RelativeLayout>
+                android:background="@drawable/gradient_graph">
 
-    </com.google.android.material.card.MaterialCardView>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/background"
+                    android:src="@drawable/gradient_graph" />
+
+                <TextView
+                    android:id="@+id/tv_selectedBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/blank"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/barChart"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@id/tv_selectedBar"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginBottom="4dp" />
+            </RelativeLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_infoDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/card_graph"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/gradient_graph">
+
+                <TextView
+                    android:id="@+id/tv_infoDetail_text_currentValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_margin="16dp"
+                    android:text="@string/blank"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_infoDetail_currentValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="16dp"
+                    android:text="@string/blank"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:id="@+id/view_divider_one"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/tv_infoDetail_currentValue"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@android:color/background_light" />
+
+                <TextView
+                    android:id="@+id/tv_infoDetail_text_allTimeHigh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/view_divider_one"
+                    android:layout_alignParentStart="true"
+                    android:layout_margin="16dp"
+                    android:text="@string/blank"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_infoDetail_allTimeHigh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/view_divider_one"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="16dp"
+                    android:text="@string/blank"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:id="@+id/view_divider_two"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/tv_infoDetail_allTimeHigh"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@android:color/background_light" />
+
+                <TextView
+                    android:id="@+id/tv_infoDetail_text_volume"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/view_divider_two"
+                    android:layout_alignParentStart="true"
+                    android:layout_margin="16dp"
+                    android:text="@string/blank"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_infoDetail_volume"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/view_divider_two"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="16dp"
+                    android:text="@string/blank"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:id="@+id/view_divider_three"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/tv_infoDetail_volume"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@android:color/background_light" />
+
+                <TextView
+                    android:id="@+id/tv_infoDetail_text_marketCap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/view_divider_three"
+                    android:layout_alignParentStart="true"
+                    android:layout_margin="16dp"
+                    android:text="@string/blank"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_infoDetail_marketCap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/view_divider_three"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="16dp"
+                    android:text="@string/blank"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:id="@+id/view_divider_four"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/tv_infoDetail_marketCap"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@android:color/background_light" />
+
+                <TextView
+                    android:id="@+id/tv_infoDetail_text_circulatingSupply"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/view_divider_four"
+                    android:layout_alignParentStart="true"
+                    android:layout_margin="16dp"
+                    android:text="@string/blank"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_infoDetail_circulatingSupply"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/view_divider_four"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="16dp"
+                    android:text="@string/blank"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:id="@+id/view_divider_five"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/tv_infoDetail_circulatingSupply"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@android:color/background_light" />
+
+                <TextView
+                    android:id="@+id/tv_infoDetail_text_totalSupply"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/view_divider_five"
+                    android:layout_alignParentStart="true"
+                    android:layout_margin="16dp"
+                    android:text="@string/blank"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_infoDetail_totalSupply"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/view_divider_five"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="16dp"
+                    android:text="@string/blank"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
 
-</FrameLayout>
+            </RelativeLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_expandable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp"
+            android:layout_below="@id/card_infoDetail">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/gradient_graph">
+
+                <ImageView
+                    android:id="@+id/iv_expandableIcon"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_margin="16dp"
+                    android:src="@drawable/arrow_down"
+                    android:layout_alignParentEnd="true" />
+
+                <TextView
+                    android:id="@+id/tv_expandableTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:text="Yorumlar"
+                    android:textColor="@android:color/white"
+                    android:textSize="24sp" />
+
+            </RelativeLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <com.github.aakira.expandablelayout.ExpandableRelativeLayout
+            android:id="@+id/expandableLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:ael_expanded="false"
+            app:ael_duration="500"
+            app:ael_interpolator="bounce"
+            app:ael_orientation="vertical"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_below="@id/card_expandable"
+            android:paddingBottom="4dp">
+
+            <FrameLayout
+                android:id="@+id/frame_comments"
+                android:layout_width="match_parent"
+                android:layout_height="450dp" />
+        </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
+
+    </RelativeLayout>
+
+</androidx.core.widget.NestedScrollView>

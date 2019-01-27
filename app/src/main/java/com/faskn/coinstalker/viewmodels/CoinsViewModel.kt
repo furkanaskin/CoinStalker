@@ -55,7 +55,7 @@ class CoinsViewModel(application: Application) : AndroidViewModel(application) {
                 list.let { coinsLiveData.postValue(list) }
             }
 
-            Timer("RequestTimer", false).schedule(3000) {
+            Timer("getCoinsTimer", false).schedule(3000) {
                 getCoins()
             }
         }
@@ -70,6 +70,7 @@ class CoinsViewModel(application: Application) : AndroidViewModel(application) {
             if (coinInfoData.isSuccessful) {
                 coinInfoLiveData.postValue(coinData)
             }
+
         }
     }
 

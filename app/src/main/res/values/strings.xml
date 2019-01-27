@@ -15,4 +15,10 @@
     <string name="connection_failed">Oops.. İnternet bağlantısı bulunamadı..</string>
     <string name="tekrar_dene">Tekrar Dene</string>
     <string name="background">Background</string>
+    <string name="siralama">Sıralama</string>
+    <string name="blank">...</string>
+    <string name="suan">Şu an</string>
+    <string name="piyasadakiPara">İşlem gören miktar</string>
+    <string name="toplamPara">Toplam miktar</string>
+    <string name="yorumGonder">Yorum gönder</string>
 </resources>

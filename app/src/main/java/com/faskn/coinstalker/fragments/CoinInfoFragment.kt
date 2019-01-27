@@ -2,61 +2,114 @@ package com.faskn.coinstalker.fragments
 
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getColor
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.bumptech.glide.Glide
 import com.faskn.coinstalker.R
 import com.faskn.coinstalker.base.BaseFragment
 import com.faskn.coinstalker.viewmodels.CoinsViewModel
-import com.github.mikephil.charting.components.AxisBase
+import com.github.aakira.expandablelayout.ExpandableRelativeLayout
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.data.Entry
-import com.github.mikephil.charting.formatter.IAxisValueFormatter
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
+import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
 import kotlinx.android.synthetic.main.fragment_coin_info.*
-import java.text.SimpleDateFormat
-import java.util.*
-import kotlin.collections.ArrayList
+import kotlin.properties.Delegates
 
 
 class CoinInfoFragment : BaseFragment() {
+
+    private var expandableLayout: ExpandableRelativeLayout by Delegates.notNull()
+    private lateinit var commentCoinSymbol: String // Define a string for CommentsFragment bundle.
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(com.faskn.coinstalker.R.layout.fragment_coin_info, container, false)
+
+        val view = inflater.inflate(R.layout.fragment_coin_info, container, false)
+        return view
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         val animationFadein =
-            AnimationUtils.loadAnimation(this.context, com.faskn.coinstalker.R.anim.fade_in)
-
-        tv_selectedBar.visibility = View.GONE //Hide selected bar text
+            AnimationUtils.loadAnimation(this.context, R.anim.fade_in)
 
         val viewModel = ViewModelProviders.of(this).get(CoinsViewModel::class.java) // Create vm
         viewModel.getCoinInfo(getCoinID())
+
+        tv_selectedBar.visibility = View.GONE //Hide selected bar text
+
         viewModel.coinInfoLiveData.observe(this@CoinInfoFragment, Observer { Data ->
 
+            // Data filling stuffs starts here..
+            commentCoinSymbol = Data.coin.symbol
+
+            tv_info_coinName.text = Data.coin.name
+            tv_info_coin_rank.text = "#${Data.coin.rank}"
+            if (Data.coin.change > 0) {
+                tv_info_coin_change.text = "+${Data.coin.change}"
+                tv_info_coin_change.setTextColor(getColor(this.context!!, R.color.colorPosivite))
+                Glide.with(view.context).load(R.drawable.arrow_up).into(iv_info_chance_arrow)
+            } else {
+                tv_info_coin_change.text = Data.coin.change.toString()
+                tv_info_coin_change.setTextColor(getColor(this.context!!, R.color.colorNegative))
+                Glide.with(view.context).load(R.drawable.arrow_down).into(iv_info_chance_arrow)
+
+
+            }
+            tv_info_coin_description.text = Data.coin.description
+            tv_info_rank_text.text = getString(R.string.siralama)
+            tv_infoDetail_text_allTimeHigh.text = getString(R.string.en_yks)
+            tv_infoDetail_text_currentValue.text = getString(R.string.suan)
+            tv_infoDetail_text_marketCap.text = getString(R.string.piyasa_degeri)
+            tv_infoDetail_text_volume.text = getString(R.string.hacim)
+            tv_infoDetail_text_circulatingSupply.text = getString(R.string.piyasadakiPara)
+            tv_infoDetail_text_totalSupply.text = getString(R.string.toplamPara)
+
+            tv_infoDetail_allTimeHigh.text =
+                    priceBeautifier(Data.coin.allTimeHigh.price, Data.base.sign)
+            tv_infoDetail_volume.text =
+                    volumeBeautifier(Data.coin.volume.toString(), Data.base.sign)
+            tv_infoDetail_marketCap.text =
+                    volumeBeautifier(Data.coin.marketCap.toString(), Data.base.sign)
+            tv_infoDetail_currentValue.text = priceBeautifier(Data.coin.price, Data.base.sign)
+
+            tv_infoDetail_circulatingSupply.text = "${Data.coin.circulatingSupply} Adet"
+            tv_infoDetail_totalSupply.text = "${Data.coin.totalSupply} Adet"
+
+            val uri: Uri = Uri.parse(Data.coin.iconUrl)
+            GlideToVectorYou.justLoadImage(view.context as Activity, uri, iv_info_coinLogo)
+
+            // Data filling stuffs ends here..
         })
 
-        viewModel.getCoinHistory(getCoinID())
+
+
+        viewModel.getCoinHistory(getCoinID())  // Get coinHistory for barChart
         val barGroup = ArrayList<BarEntry>()
         val timestampArray = ArrayList<Float>()
         viewModel.coinHistoryLiveData.observe(this@CoinInfoFragment, Observer { Data ->
+
+            // Data filling stuffs(BarChart) starts here..
             Data.history.forEachIndexed { index, element ->
                 val formattedTimeStamp = (element.timestamp / 10000).toFloat()
                 timestampArray.add(formattedTimeStamp)
@@ -95,7 +148,6 @@ class CoinInfoFragment : BaseFragment() {
             barChart.moveViewToX((barGroup.size).toFloat())
             barChart.setPinchZoom(true) // enable zoom
             barChart.data.setDrawValues(false) // hide values
-
             barChart.setOnChartValueSelectedListener(object : OnChartValueSelectedListener {
                 override fun onNothingSelected() {
                 }
@@ -105,7 +157,7 @@ class CoinInfoFragment : BaseFragment() {
                     val date = MyFormatter(timestampArray).getFormattedValue(
                         e!!.x,
                         axis = null
-                    )  // I just want to take formatted dateee !!!!
+                    )
 
                     tv_selectedBar.text = "${e.y}₺  $date"
                     tv_selectedBar.visibility = View.VISIBLE
@@ -113,7 +165,28 @@ class CoinInfoFragment : BaseFragment() {
 
                 }
             })
+
+            // Data filling stuffs(BarChart) ends here..
         })
+
+        expandableLayout = view.findViewById(R.id.expandableLayout) as ExpandableRelativeLayout
+        card_expandable?.setOnClickListener {
+            if (expandableLayout.isExpanded) {
+                val willBeDeleted = fragmentManager?.findFragmentByTag("commentFragment")
+                val transaction: FragmentTransaction = fragmentManager?.beginTransaction()!!
+                transaction.remove(willBeDeleted!!).commitNow()
+                expandableLayout.collapse()
+                iv_expandableIcon.setImageResource(R.drawable.arrow_down)
+
+            } else {
+                expandableLayout.expand()
+                expandableLayout.move(500)
+                val commentsFragment = CommentsFragment.newInstance(commentCoinSymbol)
+                val transaction: FragmentTransaction = fragmentManager?.beginTransaction()!!
+                transaction.add(R.id.frame_comments, commentsFragment, "commentFragment").commit()
+                iv_expandableIcon.setImageResource(R.drawable.arrow_up)
+            }
+        }
     }
 
     private fun getCoinID(): Int {
@@ -121,22 +194,3 @@ class CoinInfoFragment : BaseFragment() {
     }
 }
 
-class MyFormatter(val data: ArrayList<Float>) : IAxisValueFormatter {
-    override fun getFormattedValue(value: Float, axis: AxisBase?): String {
-        return unixTimeStampFormatter(data[value.toInt()].toLong())
-    }
-
-    @SuppressLint("SimpleDateFormat")
-    fun unixTimeStampFormatter(timestamp: Long): String {
-        val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
-        val date = java.util.Date(timestamp * 10000)
-        sdf.format(date)
-        val calendar = Calendar.getInstance()
-        calendar.time = date
-        val month = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.ENGLISH)
-        val day = calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.ENGLISH)
-        val hour = "${calendar.get(Calendar.HOUR_OF_DAY)}:${calendar.get(Calendar.MINUTE)}"
-
-        return "$month $day $hour"
-    }
-}
