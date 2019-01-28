@@ -3,7 +3,8 @@
     <color name="colorPrimary">#6200ee</color>
     <color name="colorPrimaryDark">#3700b3</color>
     <color name="colorAccent">#bb86fc</color>
-    <color name="colorDarkGray">#3C4564</color>
+    <color name="colorDarkGray">#20232B</color>
+    <color name="colorGray">#2E3138</color>
     <color name="colorCardBackground">#7474BF</color>
     <color name="colorCardForeground">#348AC7</color>
     <color name="colorCoinRanking">#3CD382</color>

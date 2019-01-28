@@ -132,7 +132,8 @@ class CommentsFragment : Fragment() {
             if (!edt_comment.text.toString().isEmpty()) {
                 sendData()
             } else {
-                Toast.makeText(this.context, "Please enter a message", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this.context, getString(R.string.mesajGonder), Toast.LENGTH_SHORT)
+                    .show()
             }
         }
     }
@@ -147,5 +148,6 @@ class CommentsFragment : Fragment() {
             ?.setValue(CommentsDTO(edt_comment.text.toString()))
         //clear the text
         edt_comment.setText("")
+        edt_comment.hint = getString(R.string.mesajGonder)
     }
 }

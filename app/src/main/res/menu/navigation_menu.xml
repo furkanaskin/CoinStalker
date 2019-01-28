@@ -5,7 +5,7 @@
         android:id="@+id/coinsFragment"
         android:icon="@drawable/coins"
         android:title="@string/paralar"
-        android:orderInCategory="1"/>
+        android:orderInCategory="1" />
     <item
         android:id="@+id/converterFragment"
         android:icon="@drawable/calculator"

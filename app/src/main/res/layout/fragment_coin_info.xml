@@ -27,11 +27,16 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/gradient_graph">
 
-                <ImageView
+                <com.mikhaellopez.circularimageview.CircularImageView
                     android:id="@+id/iv_info_coinLogo"
                     android:layout_width="75dp"
                     android:layout_height="75dp"
-                    android:layout_margin="16dp" />
+                    android:layout_margin="16dp"
+                    app:civ_border_width="2dp"
+                    app:civ_shadow="true"
+                    app:civ_shadow_radius="8"
+                    app:civ_shadow_color="@color/colorDarkGray"
+                    app:civ_border_color="@color/colorPrimary" />
 
                 <TextView
                     android:id="@+id/tv_info_coinName"
@@ -75,8 +80,7 @@
                     android:layout_marginEnd="16dp"
                     android:text="@string/blank"
                     android:textColor="@android:color/white"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/tv_info_coin_rank"
@@ -119,13 +123,13 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/gradient_graph">
+                android:background="@color/colorGray">
 
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:contentDescription="@string/background"
-                    android:src="@drawable/gradient_graph" />
+                    android:src="@color/colorGray" />
 
                 <TextView
                     android:id="@+id/tv_selectedBar"
@@ -163,7 +167,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/gradient_graph">
+                android:background="@color/colorGray">
 
                 <TextView
                     android:id="@+id/tv_infoDetail_text_currentValue"
@@ -370,13 +374,16 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/gradient_graph">
+                android:background="@color/colorGray">
 
                 <ImageView
                     android:id="@+id/iv_expandableIcon"
                     android:layout_width="28dp"
                     android:layout_height="28dp"
-                    android:layout_margin="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
                     android:src="@drawable/arrow_down"
                     android:layout_alignParentEnd="true" />
 
@@ -384,10 +391,14 @@
                     android:id="@+id/tv_expandableTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp"
                     android:text="Yorumlar"
                     android:textColor="@android:color/white"
-                    android:textSize="24sp" />
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
             </RelativeLayout>
 

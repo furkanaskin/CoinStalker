@@ -25,6 +25,7 @@ class MainActivity : BaseActivity() {
             Navigation.findNavController(this, R.id.container_fragment)
         )
 
+
     }
 
 

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.MainActivity">
+    tools:context=".activities.MainActivity"
+    android:background="@color/colorDarkGray">
 
     <fragment
         android:id="@+id/container_fragment"
@@ -20,8 +21,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/gradient_bottomnav"
+        app:elevation="@dimen/cardview_compat_inset_shadow"
         android:visibility="gone"
-        app:menu="@menu/navigation_menu"/>
+        app:menu="@menu/navigation_menu" />
 
 </RelativeLayout>

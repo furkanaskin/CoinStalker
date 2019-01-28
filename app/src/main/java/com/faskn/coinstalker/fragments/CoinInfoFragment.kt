@@ -6,6 +6,7 @@ import android.app.Activity
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -98,6 +99,12 @@ class CoinInfoFragment : BaseFragment() {
 
             val uri: Uri = Uri.parse(Data.coin.iconUrl)
             GlideToVectorYou.justLoadImage(view.context as Activity, uri, iv_info_coinLogo)
+            try {
+                val color = Color.parseColor(Data.coin.color)
+                iv_info_coinLogo.setBorderColor(color)
+            } catch (e: java.lang.Exception) {
+                Log.v("colorSetter", "Used default color.")
+            }
 
             // Data filling stuffs ends here..
         })
@@ -119,7 +126,7 @@ class CoinInfoFragment : BaseFragment() {
             val barDataSet = BarDataSet(barGroup, "24 Saatlik değerler")
 
             barDataSet.color = ContextCompat.getColor(
-                this.context!!, R.color.colorPrimaryDark
+                this.context!!, R.color.colorPrettyOrange
             )
 
             val data = BarData(barDataSet)

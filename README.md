@@ -26,6 +26,8 @@ This project about cryptocurrency coins. I create this project for improving my 
  - [Material Design](https://material.io/develop/android/docs/getting-started/)
  - [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart)
  - [ExpandableLayout](https://github.com/AAkira/ExpandableLayout)
+ - [CircularImageView](https://github.com/lopspower/CircularImageView)
+ - [Fabric](https://fabric.io/kits/android/crashlytics)
  
 ## Future Development
 

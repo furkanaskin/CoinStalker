@@ -18,12 +18,17 @@
             android:layout_height="wrap_content"
             android:background="@drawable/gradient_card">
 
-            <ImageView
+            <com.mikhaellopez.circularimageview.CircularImageView
                 android:id="@+id/iv_coinLogo"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_alignTop="@id/tv_coinFullName"
-                android:layout_marginStart="16dp" />
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_alignTop="@id/tv_coin_price"
+                android:layout_marginStart="16dp"
+                app:civ_border_width="2dp"
+                app:civ_shadow="true"
+                app:civ_shadow_radius="8"
+                app:civ_shadow_color="@color/colorDarkGray"
+                app:civ_border_color="@color/colorPrimary" />
 
             <TextView
                 android:id="@+id/tv_coinFullName"
@@ -59,7 +64,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="24dp"
                 android:layout_toEndOf="@id/view_center"
                 android:maxLength="9"
                 android:maxLines="1"

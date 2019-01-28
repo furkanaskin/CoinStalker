@@ -2,6 +2,7 @@ package com.faskn.coinstalker.viewholders
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.graphics.Color
 import android.net.Uri
 import android.util.Log
 import android.view.View
@@ -13,6 +14,7 @@ import com.faskn.coinstalker.R
 import com.faskn.coinstalker.model.Base
 import com.faskn.coinstalker.model.Coin
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
+import com.mikhaellopez.circularimageview.CircularImageView
 import java.math.BigDecimal
 
 
@@ -26,7 +28,7 @@ class CoinViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         val txtVolume = view.findViewById(R.id.tv_coin_volume) as TextView
         val txtMaxPrice = view.findViewById(R.id.tv_coin_maxPrice) as TextView
         val txtMarketCap = view.findViewById(R.id.tv_coin_marketcap) as TextView
-        val ivCoinLogo = view.findViewById(R.id.iv_coinLogo) as ImageView
+        val ivCoinLogo = view.findViewById(R.id.iv_coinLogo) as CircularImageView
         val ivChanceArrow = view.findViewById(R.id.iv_chance_arrow) as ImageView
 
 
@@ -59,6 +61,19 @@ class CoinViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
         val uri: Uri = Uri.parse(coin.iconUrl)
         GlideToVectorYou.justLoadImage(view.context as Activity, uri, ivCoinLogo)
+        try {
+            val color = Color.parseColor(coin.color)
+            ivCoinLogo.setBorderColor(color)
+        } catch (e: java.lang.Exception) {
+
+        }
+
+        try {
+            val color = Color.parseColor(coin.color)
+            txtFullCoinName.setTextColor(color)
+        } catch (e: java.lang.Exception) {
+
+        }
 
         itemView.setOnClickListener { itemClickListener(view, coin.id) }
     }

@@ -5,6 +5,7 @@
         <item name="colorPrimary">#6200ee</item>
         <item name="colorPrimaryDark">#3700b3</item>
         <item name="colorAccent">#bb86fc</item>
+        <item name="fontFamily">@font/ubuntu</item>
     </style>
 
 </resources>
