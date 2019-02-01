@@ -16,10 +16,12 @@
     <string name="tekrar_dene">Tekrar Dene</string>
     <string name="background">Background</string>
     <string name="siralama">Sıralama</string>
-    <string name="blank">...</string>
+    <string name="blank">…</string>
     <string name="suan">Şu an</string>
     <string name="piyasadakiPara">İşlem gören miktar</string>
     <string name="toplamPara">Toplam miktar</string>
     <string name="yorumGonder">Yorum gönder</string>
     <string name="mesajGonder">Lütfen bir mesaj giriniz.</string>
+    <string name="yorumyok">Daha önce hiç yorum yapmılmamış.</string>
+    <string name="yorumlar">Yorumlar</string>
 </resources>

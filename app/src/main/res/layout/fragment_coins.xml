@@ -11,7 +11,8 @@
         android:id="@+id/container_coins"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="?attr/actionBarSize" />
+        android:paddingBottom="?attr/actionBarSize"
+        android:layoutAnimation="@anim/layout_animation_from_bottom" />
 
     <ProgressBar
         android:id="@+id/pb_coins"

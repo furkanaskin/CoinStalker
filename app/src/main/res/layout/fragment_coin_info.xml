@@ -125,12 +125,6 @@
                 android:layout_height="match_parent"
                 android:background="@color/colorGray">
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:contentDescription="@string/background"
-                    android:src="@color/colorGray" />
-
                 <TextView
                     android:id="@+id/tv_selectedBar"
                     android:layout_width="wrap_content"
@@ -395,7 +389,7 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="8dp"
-                    android:text="Yorumlar"
+                    android:text="@string/yorumlar"
                     android:textColor="@android:color/white"
                     android:textSize="16sp"
                     android:textStyle="bold" />

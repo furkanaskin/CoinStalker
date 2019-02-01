@@ -1,14 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.ConverterFragment"
-    android:background="@android:color/holo_orange_dark">
+    android:background="@color/colorDarkGray"
+    tools:context=".fragments.ConverterFragment">
 
-    <TextView
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_coin_info"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="ConverterFragment" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="4dp">
 
-</FrameLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/gradient_graph">
+
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/iv_converter_firstCoinLogo"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="50dp"
+                android:layout_toStartOf="@id/view_center"
+                android:src="@drawable/coinstalker"
+                app:civ_border_color="@color/colorPrimary"
+                app:civ_border_width="2dp"
+                app:civ_shadow="true"
+                app:civ_shadow_color="@color/colorDarkGray"
+                app:civ_shadow_radius="8" />
+
+            <Spinner
+                android:id="@+id/spinner_firstCoin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@id/iv_converter_firstCoinLogo"
+                android:layout_alignBottom="@+id/view_center"
+                android:layout_marginBottom="8dp" />
+
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/iv_converter_secondCoinLogo"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="50dp"
+                android:layout_toEndOf="@id/view_center"
+                android:src="@drawable/coinstalker"
+                app:civ_border_color="@color/colorPrimary"
+                app:civ_border_width="2dp"
+                app:civ_shadow="true"
+                app:civ_shadow_color="@color/colorDarkGray"
+                app:civ_shadow_radius="8" />
+
+
+            <Spinner
+                android:id="@+id/spinner_secondCoin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@id/iv_converter_secondCoinLogo"
+                android:layout_alignBottom="@+id/view_center"
+                android:layout_marginBottom="8dp" />
+
+            <View
+                android:id="@+id/view_center"
+                android:layout_width="2dp"
+                android:layout_height="160dp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/gradient_bottomnav" />
+
+
+        </RelativeLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_converter"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@id/card_coin_info"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="4dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorGray">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_firstCoin"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:hint="@string/blank"
+                app:boxStrokeColor="@color/colorPrimary">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_firstCoin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_secondCoin"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="16dp"
+                android:hint="@string/blank"
+                app:boxStrokeColor="@color/colorPrimary">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_secondCoin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+        </RelativeLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</RelativeLayout>

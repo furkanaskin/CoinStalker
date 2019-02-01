@@ -27,6 +27,16 @@
                 android:background="@color/colorDarkGray"
                 android:layout_above="@id/include_edittext" />
 
+            <TextView
+                android:id="@+id/tv_noComment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/yorumyok"
+                android:minLines="2"
+                android:gravity="center"
+                android:visibility="gone" />
+
             <include
                 android:id="@+id/include_edittext"
                 layout="@layout/container_commentbox"

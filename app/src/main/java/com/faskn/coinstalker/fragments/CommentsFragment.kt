@@ -92,6 +92,7 @@ class CommentsFragment : Fragment() {
                 toReturn.sortBy { comment ->
                     comment.timestamp
                 }
+                checkCommentData(toReturn)
                 recycler_comments.adapter?.notifyDataSetChanged()
                 setupAdapter(toReturn)
             }
@@ -149,5 +150,13 @@ class CommentsFragment : Fragment() {
         //clear the text
         edt_comment.setText("")
         edt_comment.hint = getString(R.string.mesajGonder)
+    }
+
+    private fun checkCommentData(commentData: ArrayList<CommentsDTO>) {
+        if (commentData.isEmpty()) {
+            tv_noComment.visibility = View.VISIBLE
+        } else {
+            tv_noComment.visibility = View.GONE
+        }
     }
 }
