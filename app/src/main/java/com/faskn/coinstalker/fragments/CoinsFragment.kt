@@ -29,7 +29,7 @@ class CoinsFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(com.faskn.coinstalker.R.layout.fragment_coins, container, false)
+        return inflater.inflate(R.layout.fragment_coins, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -38,7 +38,7 @@ class CoinsFragment : BaseFragment() {
 
         val viewModel = ViewModelProviders.of(this).get(CoinsViewModel::class.java) // Create vm
         val coinsRecyclerView =
-            view.findViewById<RecyclerView>(com.faskn.coinstalker.R.id.container_coins)
+            view.findViewById<RecyclerView>(R.id.container_coins)
         coinsRecyclerView.layoutManager =
                 LinearLayoutManager(this.context, RecyclerView.VERTICAL, false)
         val itemOnClick: (View, Int) -> Unit = { _, id ->
