@@ -1,6 +1,7 @@
 package com.faskn.coinstalker.fragments
 
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,7 @@ import com.faskn.coinstalker.R
 import com.faskn.coinstalker.adapters.CoinAdapter
 import com.faskn.coinstalker.base.BaseFragment
 import com.faskn.coinstalker.model.Coin
+import com.faskn.coinstalker.utils.ListPaddingDecoration
 import com.faskn.coinstalker.viewmodels.CoinsViewModel
 import kotlinx.android.synthetic.main.fragment_coins.*
 
@@ -29,7 +31,9 @@ class CoinsFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_coins, container, false)
+        val view = inflater.inflate(R.layout.fragment_coins, container, false)
+        val actionBar = activity?.actionBar
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -41,6 +45,9 @@ class CoinsFragment : BaseFragment() {
             view.findViewById<RecyclerView>(R.id.container_coins)
         coinsRecyclerView.layoutManager =
                 LinearLayoutManager(this.context, RecyclerView.VERTICAL, false)
+        coinsRecyclerView.addItemDecoration(
+            ListPaddingDecoration(activity as Activity, 40, 40, 0)
+        )
         val itemOnClick: (View, Int) -> Unit = { _, id ->
             val action = CoinsFragmentDirections.actionCoinsFragmentToCoinInfoFragment(id)
             findNavController().navigate(action)

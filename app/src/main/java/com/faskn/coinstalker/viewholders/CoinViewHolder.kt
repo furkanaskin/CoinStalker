@@ -72,7 +72,7 @@ class CoinViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         val beforeDot = price.toString().substringBeforeLast(".")
         val after = afterDot.take(2)
 
-        return "$sign$beforeDot.$after"
+        return "$beforeDot.$after$sign"
     }
 
 }

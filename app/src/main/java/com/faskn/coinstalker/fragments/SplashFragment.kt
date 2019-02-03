@@ -21,6 +21,7 @@ class SplashFragment : BaseFragment() {
 
 
     private val bottomNav by lazy { activity?.bottom_navigation }
+    private val actionBar by lazy { activity?.toolbar }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -76,10 +77,12 @@ class SplashFragment : BaseFragment() {
                     if (status) {
                         navigate(com.faskn.coinstalker.R.id.action_splashFragment_to_coinsFragment)
                         bottomNav?.visibility = View.VISIBLE
+                        actionBar?.visibility = View.VISIBLE
                         Log.v("qqq", "Connection successful.")
                     } else {
                         navigate(com.faskn.coinstalker.R.id.action_splashFragment_to_connectionFragment)
                         bottomNav?.visibility = View.GONE
+                        actionBar?.visibility = View.GONE
                         Log.v("qqq", "No internet connection.")
                     }
                 })

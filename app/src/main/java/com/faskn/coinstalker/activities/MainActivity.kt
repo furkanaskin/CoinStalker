@@ -1,6 +1,8 @@
 package com.faskn.coinstalker.activities
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.navigation.Navigation
@@ -25,9 +27,32 @@ class MainActivity : BaseActivity() {
             Navigation.findNavController(this, R.id.container_fragment)
         )
 
+        setSupportActionBar(findViewById(R.id.toolbar))
+
 
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.actionbar_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+        R.id.action_filtrele -> {
+            Toast.makeText(this, "Filtrele", Toast.LENGTH_LONG).show()
+            true
+        }
+        android.R.id.home -> {
+            Toast.makeText(this, "Home action", Toast.LENGTH_LONG).show()
+            true
+        }
+
+        else -> {
+            // If we got here, the user's action was not recognized.
+            // Invoke the superclass to handle it.
+            super.onOptionsItemSelected(item)
+        }
+    }
 
     override fun onBackPressed() {
         when (NavHostFragment.findNavController(container_fragment).currentDestination!!.id) {

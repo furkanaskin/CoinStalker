@@ -24,4 +24,6 @@
     <string name="mesajGonder">Lütfen bir mesaj giriniz.</string>
     <string name="yorumyok">Daha önce hiç yorum yapmılmamış.</string>
     <string name="yorumlar">Yorumlar</string>
+    <string name="filtrele">Filtrele</string>
+    <string name="info">Bilgi</string>
 </resources>

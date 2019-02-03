@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.CoinsFragment"
-    android:background="@color/colorDarkGray">
+    android:background="@color/colorGray">
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingBottom="?attr/actionBarSize"
+        android:paddingTop="?attr/actionBarSize"
         android:layoutAnimation="@anim/layout_animation_from_bottom" />
 
     <ProgressBar
