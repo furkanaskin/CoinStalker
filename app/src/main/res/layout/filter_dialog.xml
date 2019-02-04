@@ -14,7 +14,7 @@
         android:layout_marginEnd="40dp"
         android:layout_marginStart="40dp"
         app:layout_constraintVertical_bias="0.0"
-        android:background="@color/colorGray">
+        android:background="@color/colorPrimary">
 
         <ImageView
             android:id="@+id/button_exit"
@@ -43,7 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="500dp"
         android:layout_margin="40dp"
-        android:background="@color/colorDarkGray"
+        android:background="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -69,7 +69,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:background="@color/colorDarkGray">
+            android:background="@color/colorPrimaryDark">
 
             <RadioButton
                 android:id="@+id/radioTRY"
@@ -78,7 +78,7 @@
                 android:checked="true"
                 android:text="TRY"
                 android:textColor="@color/colorPrettyOrange"
-                android:buttonTint="@color/colorRadioTint"
+                android:buttonTint="@color/colorAccent"
                 android:textSize="16sp" />
 
             <RadioButton
@@ -87,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:text="USD"
                 android:textColor="@color/colorPrettyOrange"
-                android:buttonTint="@color/colorRadioTint"
+                android:buttonTint="@color/colorAccent"
                 android:textSize="16sp" />
 
             <RadioButton
@@ -96,7 +96,7 @@
                 android:layout_height="wrap_content"
                 android:text="EUR"
                 android:textColor="@color/colorPrettyOrange"
-                android:buttonTint="@color/colorRadioTint"
+                android:buttonTint="@color/colorAccent"
                 android:textSize="16sp" />
 
         </RadioGroup>

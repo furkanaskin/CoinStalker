@@ -2,10 +2,15 @@
 
     <style name="AppTheme" parent="Theme.MaterialComponents.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">#6200ee</item>
-        <item name="colorPrimaryDark">#3700b3</item>
-        <item name="colorAccent">#bb86fc</item>
+        <item name="colorPrimary">#202833</item>
+        <item name="colorPrimaryDark">#12151C</item>
+        <item name="colorAccent">#FF8252</item>
         <item name="fontFamily">@font/ubuntu</item>
+        <item name="android:actionOverflowButtonStyle">@style/MyActionButtonOverflow</item>
+    </style>
+
+    <style name="MyActionButtonOverflow" parent="@style/Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:tint">@color/colorHoloGray</item>
     </style>
 
 </resources>

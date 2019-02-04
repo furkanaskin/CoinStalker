@@ -14,7 +14,7 @@
             android:id="@+id/rv_card_main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorDarkGray">
+            android:background="@color/colorPrimaryDark">
 
             <com.mikhaellopez.circularimageview.CircularImageView
                 android:id="@+id/iv_coinLogo"
@@ -26,8 +26,8 @@
                 app:civ_border_width="2dp"
                 app:civ_shadow="true"
                 app:civ_shadow_radius="8"
-                app:civ_shadow_color="@color/colorDarkGray"
-                app:civ_border_color="@color/colorPrimary" />
+                app:civ_shadow_color="@color/colorPrimaryDark"
+                app:civ_border_color="@color/colorPrettyOrange" />
 
             <TextView
                 android:id="@+id/tv_coinFullName"
@@ -52,7 +52,7 @@
                 android:text="@string/coinname"
                 android:maxLength="9"
                 android:maxLines="1"
-                android:textColor="@color/colorGray"
+                android:textColor="@color/colorPrimary"
                 android:layout_marginBottom="8dp" />
 
 

@@ -24,7 +24,7 @@
                 android:id="@+id/recycler_comments"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/colorDarkGray"
+                android:background="@color/colorPrimaryDark"
                 android:layout_above="@id/include_edittext" />
 
             <TextView

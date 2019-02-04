@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorDarkGray"
+    android:background="@color/colorPrimaryDark"
     tools:context=".activities.MainActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -12,9 +12,10 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
-        android:elevation="4dp"
+        android:elevation="8dp"
         android:minHeight="?attr/actionBarSize"
         android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
+        app:titleTextColor="@color/colorAccent"
         android:visibility="gone" />
 
     <fragment
@@ -31,9 +32,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/gradient_bottomnav"
+        android:background="@color/colorPrimary"
+        app:itemIconTint="@color/bottomnav_selector"
+        app:itemTextColor="@color/bottomnav_selector"
         android:visibility="gone"
-        app:elevation="@dimen/cardview_compat_inset_shadow"
+        app:elevation="8dp"
         app:menu="@menu/navigation_menu" />
 
 </RelativeLayout>

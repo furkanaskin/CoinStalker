@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.CoinsFragment"
-    android:background="@color/colorGray">
+    android:background="@color/colorPrimary">
 
 
     <androidx.recyclerview.widget.RecyclerView

@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorDarkGray"
+    android:background="@color/colorPrimaryDark"
     android:paddingBottom="?attr/actionBarSize"
     tools:context=".fragments.CoinInfoFragment"
     android:id="@+id/sv_fragmentInfo">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingTop="?attr/actionBarSize">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_coin_info"
@@ -35,7 +36,7 @@
                     app:civ_border_width="2dp"
                     app:civ_shadow="true"
                     app:civ_shadow_radius="8"
-                    app:civ_shadow_color="@color/colorDarkGray"
+                    app:civ_shadow_color="@color/colorPrimaryDark"
                     app:civ_border_color="@color/colorPrimary" />
 
                 <TextView
@@ -123,7 +124,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/colorGray">
+                android:background="@color/colorPrimary">
 
                 <TextView
                     android:id="@+id/tv_selectedBar"
@@ -161,7 +162,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/colorGray">
+                android:background="@color/colorPrimary">
 
                 <TextView
                     android:id="@+id/tv_infoDetail_text_currentValue"
@@ -368,7 +369,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/colorGray">
+                android:background="@color/colorPrimary">
 
                 <ImageView
                     android:id="@+id/iv_expandableIcon"

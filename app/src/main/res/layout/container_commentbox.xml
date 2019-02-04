@@ -19,6 +19,6 @@
             android:background="@android:color/white"
             android:hint="@string/yorumGonder"
             android:inputType="text"
-            android:textColor="@color/colorPrimaryDark" />
+            android:textColor="@color/colorAccent" />
     </com.google.android.material.card.MaterialCardView>
 </LinearLayout>
