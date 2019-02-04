@@ -2,9 +2,7 @@ package com.faskn.coinstalker.fragments
 
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
@@ -27,6 +25,9 @@ class ConverterFragment : BaseFragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_converter, container, false)
+
+        val actionBar = activity?.actionBar
+        setHasOptionsMenu(true)
 
         val viewModel = ViewModelProviders.of(this@ConverterFragment)
             .get(CoinsViewModel::class.java) // Create vm
@@ -55,6 +56,11 @@ class ConverterFragment : BaseFragment() {
 
 
         return view
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater) {
+        inflater.inflate(R.menu.actionbar_converter_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

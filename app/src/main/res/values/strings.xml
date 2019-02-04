@@ -26,4 +26,7 @@
     <string name="yorumlar">Yorumlar</string>
     <string name="filtrele">Filtrele</string>
     <string name="info">Bilgi</string>
+    <string name="karsilastir">Karşılaştır</string>
+    <string name="close">Pencereyi Kapat</string>
+    <string name="chooseMoneytype">Lütfen para birimi seçiniz.</string>
 </resources>
