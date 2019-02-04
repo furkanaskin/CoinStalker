@@ -1,7 +1,9 @@
 package com.faskn.coinstalker.fragments
 
 
+import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.view.*
 import android.view.animation.AnimationUtils
@@ -19,14 +21,26 @@ import com.faskn.coinstalker.base.BaseFragment
 import com.faskn.coinstalker.model.Coin
 import com.faskn.coinstalker.utils.FilterDialogHelper
 import com.faskn.coinstalker.utils.ListPaddingDecoration
+import com.faskn.coinstalker.utils.SharedPrefKey
 import com.faskn.coinstalker.viewmodels.CoinsViewModel
 import kotlinx.android.synthetic.main.fragment_coins.*
 
 
+@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class CoinsFragment : BaseFragment() {
 
     private var RECYCLER_ANIMATION_FLAG = 0
     private var filterDialog: AlertDialog? = null
+    private val viewModel by lazy {
+        ViewModelProviders.of(this).get(CoinsViewModel::class.java)
+    } // Create vm.
+    private val sharedPref by lazy {
+        activity?.getSharedPreferences(
+            SharedPrefKey.PrivateSharedPref.toString(),
+            Context.MODE_PRIVATE
+        )
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,7 +49,6 @@ class CoinsFragment : BaseFragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_coins, container, false)
-        val actionBar = activity?.actionBar
         setHasOptionsMenu(true)
         return view
     }
@@ -68,7 +81,7 @@ class CoinsFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         pb_coins.visibility = View.VISIBLE
 
-        val viewModel = ViewModelProviders.of(this).get(CoinsViewModel::class.java) // Create vm
+
         val coinsRecyclerView =
             view.findViewById<RecyclerView>(R.id.container_coins)
         coinsRecyclerView.layoutManager =
@@ -80,7 +93,7 @@ class CoinsFragment : BaseFragment() {
             findNavController().navigate(action)
         }
 
-        viewModel.getCoins() // Get data
+        viewModel.getCoins(this.getBase()!!) // Get data
         viewModel.coinsLiveData.observe(this@CoinsFragment, Observer { Data ->
             // Observe the data
             val adapter = CoinAdapter(Data.coins as ArrayList<Coin>, Data.base, itemOnClick)
@@ -103,22 +116,16 @@ class CoinsFragment : BaseFragment() {
         recyclerView.scheduleLayoutAnimation()
     }
 
+    @SuppressLint("CommitPrefEdits")
     private fun showDialog() {
         if (filterDialog == null) {
             filterDialog = showFilterDialog {
                 cancelable = false
 
-                closeIconClickListener {
-                    Toast.makeText(context, "Close icon", Toast.LENGTH_SHORT).show()
-
-                }
-
-                doneIconClickListener {
-                    Toast.makeText(context, "Done icon", Toast.LENGTH_SHORT).show()
-                }
-
-                radioButtonSelectedListener {
-                    Toast.makeText(context, "USD", Toast.LENGTH_SHORT).show()
+                radioGroupClickListener()
+                retrieveChoices()
+                exitButtonClickListener {
+                    navigate(R.id.action_coinsFragment_pop)
                 }
             }
             //  and showing
@@ -130,4 +137,9 @@ class CoinsFragment : BaseFragment() {
         FilterDialogHelper(this.context!!).apply {
             func()
         }.create()
+
+
+    private fun getBase(): String? {
+        return sharedPref?.getString(SharedPrefKey.Base.toString(), "TRY")
+    }
 }

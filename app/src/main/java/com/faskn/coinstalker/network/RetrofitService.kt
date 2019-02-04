@@ -7,10 +7,11 @@ import kotlinx.coroutines.Deferred
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface RetrofitService {
-    @GET("coins?base=TRY&sort=price&limit=100")
-    fun getCoins(): Deferred<Response<CoinsResponse>>
+    @GET("coins?&sort=price&limit=100")
+    fun getCoins(@Query("base") coinBase: String): Deferred<Response<CoinsResponse>>
 
     @GET("coin/{coinID}?base=TRY")
     fun getCoinData(@Path("coinID") coinID: Int): Deferred<Response<CoinInfoResponse>>

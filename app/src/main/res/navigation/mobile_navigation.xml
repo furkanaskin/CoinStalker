@@ -31,6 +31,10 @@
         <action
             android:id="@+id/action_coinsFragment_to_coinInfoFragment"
             app:destination="@id/coinInfoFragment" />
+        <argument
+            android:name="base"
+            app:argType="string"
+            android:defaultValue="TRY" />
 
     </fragment>
     <fragment

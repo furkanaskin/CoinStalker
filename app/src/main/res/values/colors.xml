@@ -11,5 +11,6 @@
     <color name="colorPosivite">#00C853</color>
     <color name="colorNegative">#DD2C00</color>
     <color name="colorPrettyOrange">#EF6C00</color>
+    <color name="colorRadioTint">#FF8252</color>
     <color name="colorHoloBlue">#4776E6</color>
 </resources>

@@ -45,10 +45,10 @@ class CoinsViewModel(application: Application) : AndroidViewModel(application) {
 
     }
 
-    fun getCoins() {
+    fun getCoins(base: String) {
         GlobalScope.launch(Dispatchers.Main) {
             val service = RetrofitFactory.makeRetrofitService()
-            val coinsData = service.getCoins().await()
+            val coinsData = service.getCoins(base).await()
 
             if (coinsData.isSuccessful) {
                 val list = coinsData.body()!!.data
@@ -56,7 +56,7 @@ class CoinsViewModel(application: Application) : AndroidViewModel(application) {
             }
 
             Timer("getCoinsTimer", false).schedule(3000) {
-                getCoins()
+                getCoins(base)
             }
         }
     }
