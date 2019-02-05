@@ -52,7 +52,7 @@
                 android:text="@string/coinname"
                 android:maxLength="9"
                 android:maxLines="1"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorHoloGray"
                 android:layout_marginBottom="8dp" />
 
 

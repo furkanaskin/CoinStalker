@@ -22,12 +22,12 @@ import java.math.BigDecimal
 class CoinViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
     @SuppressLint("SetTextI18n")
     fun bind(coin: Coin, base: Base, itemClickListener: (View, Int) -> Unit) {
-        val txtShortCoinName = view.findViewById(R.id.tv_coinShortName) as TextView
-        val txtFullCoinName = view.findViewById(R.id.tv_coinFullName) as TextView
-        val txtPrice = view.findViewById(R.id.tv_coin_price) as TextView
-        val txtChange = view.findViewById(R.id.tv_coin_change) as TextView
-        val ivCoinLogo = view.findViewById(R.id.iv_coinLogo) as CircularImageView
-        val ivChanceArrow = view.findViewById(R.id.iv_chance_arrow) as ImageView
+        val txtShortCoinName: TextView = view.findViewById(R.id.tv_coinShortName)
+        val txtFullCoinName: TextView = view.findViewById(R.id.tv_coinFullName)
+        val txtPrice: TextView = view.findViewById(R.id.tv_coin_price)
+        val txtChange: TextView = view.findViewById(R.id.tv_coin_change)
+        val ivCoinLogo: CircularImageView = view.findViewById(R.id.iv_coinLogo)
+        val ivChanceArrow: ImageView = view.findViewById(R.id.iv_chance_arrow)
 
 
 
