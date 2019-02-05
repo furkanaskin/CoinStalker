@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.graphics.Color
 import android.net.Uri
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -61,7 +62,7 @@ class CoinViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
             val color = Color.parseColor(coin.color)
             txtFullCoinName.setTextColor(color)
         } catch (e: java.lang.Exception) {
-
+            Log.v("qqq", e.toString())
         }
 
         itemView.setOnClickListener { itemClickListener(view, coin.id) }

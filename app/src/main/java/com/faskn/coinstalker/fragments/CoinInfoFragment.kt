@@ -98,7 +98,7 @@ class CoinInfoFragment : BaseFragment() {
             tv_infoDetail_totalSupply.text = "${Data.coin.totalSupply} Adet"
 
             val uri: Uri = Uri.parse(Data.coin.iconUrl)
-            GlideToVectorYou.justLoadImage(view.context as Activity, uri, iv_info_coinLogo)
+            GlideToVectorYou.justLoadImage(view.context as? Activity, uri, iv_info_coinLogo)
             try {
                 val color = Color.parseColor(Data.coin.color)
                 iv_info_coinLogo.setBorderColor(color)

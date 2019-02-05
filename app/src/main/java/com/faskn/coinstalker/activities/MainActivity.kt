@@ -32,7 +32,7 @@ class MainActivity : BaseActivity() {
 
 
     override fun onBackPressed() {
-        when (NavHostFragment.findNavController(container_fragment).currentDestination!!.id) {
+        when (NavHostFragment.findNavController(container_fragment).currentDestination?.id) {
             R.id.coinsFragment -> {
                 val builder = AlertDialog.Builder(this@MainActivity)
                 builder.setMessage("Gerçekten çıkış yapmak istiyor musunuz?")
