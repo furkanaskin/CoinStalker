@@ -19,7 +19,6 @@ class ConverterFragment : BaseFragment() {
 
     private val coinNames by lazy { ArrayList<String>() }
     private var COIN_SPINNER_FLAG = 999
-    private var base = "TRY"
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,7 +32,7 @@ class ConverterFragment : BaseFragment() {
         val viewModel = ViewModelProviders.of(this@ConverterFragment)
             .get(CoinsViewModel::class.java) // Create vm
 
-        viewModel.getCoins(base)
+        viewModel.getCoins(getBase(), getSort())
         viewModel.coinsLiveData.observe(this@ConverterFragment, Observer { Data ->
             if (COIN_SPINNER_FLAG != 0) {
                 Data.coins.forEachIndexed { index, element ->

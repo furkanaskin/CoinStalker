@@ -28,6 +28,8 @@
     <string name="karsilastir">Karşılaştır</string>
     <string name="close">Kapat</string>
     <string name="chooseMoneytype">Lütfen para birimi seçiniz.</string>
+    <string name="sortType">Lütfen sıralama türünü seçiniz.</string>
     <string name="onayla">ONAYLA</string>
     <string name="tamam">Tamam</string>
+    <string name="deger">Değer</string>
 </resources>

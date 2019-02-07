@@ -10,14 +10,14 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface RetrofitService {
-    @GET("coins?&sort=price&limit=100")
-    fun getCoins(@Query("base") coinBase: String): Deferred<Response<CoinsResponse>>
+    @GET("coins?limit=100")
+    fun getCoins(@Query("base") coinBase: String?, @Query("sort") sort: String?): Deferred<Response<CoinsResponse>>
 
-    @GET("coin/{coinID}?base=TRY")
-    fun getCoinData(@Path("coinID") coinID: Int): Deferred<Response<CoinInfoResponse>>
+    @GET("coin/{coinID}?")
+    fun getCoinData(@Path("coinID") coinID: Int, @Query("base") coinBase: String?): Deferred<Response<CoinInfoResponse>>
 
-    @GET("coin/{coinID}/history/24h?base=TRY")
-    fun getCoinHistory(@Path("coinID") coinID: Int): Deferred<Response<CoinHistoryResponse>>
+    @GET("coin/{coinID}/history/24h?")
+    fun getCoinHistory(@Path("coinID") coinID: Int, @Query("base") coinBase: String?): Deferred<Response<CoinHistoryResponse>>
 
 }
 

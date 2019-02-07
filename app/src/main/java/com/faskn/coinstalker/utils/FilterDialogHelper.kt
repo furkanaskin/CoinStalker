@@ -32,11 +32,15 @@ class FilterDialogHelper(context: Context) : BaseDialogHelper() {
         dialogView.findViewById<ImageView>(R.id.button_exit)
     }
 
-    //  Radio Group
-    private val radioGroup: RadioGroup by lazy {
+    //  Coin Type Radio Group
+    private val radioGroupCoinType: RadioGroup by lazy {
         dialogView.findViewById<RadioGroup>(R.id.radioGroupCoinType)
     }
 
+    //  Sorting Type Radio Group
+    private val radioGroupSortType: RadioGroup by lazy {
+        dialogView.findViewById<RadioGroup>(R.id.radioGroupSortType)
+    }
 
     fun exitButtonClickListener(func: (() -> Unit)? = null) =
         with(exitButton) {
@@ -44,15 +48,28 @@ class FilterDialogHelper(context: Context) : BaseDialogHelper() {
         }
 
 
-    fun radioGroupClickListener(func: (() -> Unit)? = null) =
-        with(radioGroup) {
-            setRadioGroupClickListener(func)
+    fun radioGroupClickListener(func: (() -> Unit)? = null) {
+
+        with(radioGroupCoinType) {
+            setCoinRadioGroupClickListener(func)
         }
 
+        with(radioGroupSortType) {
+            setSortingRadioGroupClickListener(func)
+        }
+    }
+
     fun retrieveChoices() {
-        val lastCheckedItem = sharedPref.getInt(SharedPrefKey.CheckedBaseButtonID.toString(), -1)
-        if (lastCheckedItem > 0) {
-            radioGroup.check(lastCheckedItem)
+        val lastCheckedCoinType =
+            sharedPref.getInt(SharedPrefKey.CheckedBaseButtonID.toString(), -1)
+        val lastCheckedSortType =
+            sharedPref.getInt(SharedPrefKey.CheckedSortFilterButtonID.toString(), -1)
+        if (lastCheckedCoinType > 0) {
+            radioGroupCoinType.check(lastCheckedCoinType)
+        }
+
+        if (lastCheckedSortType > 0) {
+            radioGroupSortType.check(lastCheckedSortType)
         }
     }
 
@@ -64,12 +81,20 @@ class FilterDialogHelper(context: Context) : BaseDialogHelper() {
         }
 
 
-    private fun RadioGroup.setRadioGroupClickListener(func: (() -> Unit)?) =
+    private fun RadioGroup.setCoinRadioGroupClickListener(func: (() -> Unit)?) =
         setOnCheckedChangeListener { group, checkedId ->
             func?.invoke()
             val checkedItem = group.findViewById<RadioButton>(checkedId)
             sharedPref.edit().setBase(checkedItem.text as String)
             sharedPref.edit().setCheckedBaseButtonID(checkedId)
+        }
+
+    private fun RadioGroup.setSortingRadioGroupClickListener(func: (() -> Unit)?) =
+        setOnCheckedChangeListener { group, checkedId ->
+            func?.invoke()
+            val checkedItem = group.findViewById<RadioButton>(checkedId)
+            sharedPref.edit().setFilter(checkedItem.text as String)
+            sharedPref.edit().setCheckedSortingButtonID(checkedId)
         }
 
     private fun SharedPreferences.Editor.setBase(Base: String) {
@@ -81,11 +106,37 @@ class FilterDialogHelper(context: Context) : BaseDialogHelper() {
         }
     }
 
+    private fun SharedPreferences.Editor.setFilter(sortFilter: String) {
+
+        val sort = when (sortFilter) {
+            "Değer" -> "price"
+            "Piyasa Değeri" -> "marketCap"
+            "Değişim" -> "change"
+            else -> "coinranking"
+
+        }
+
+        with(this) {
+
+            putString(SharedPrefKey.SortFilter.toString(), sort)
+            apply()
+        }
+    }
+
     private fun SharedPreferences.Editor.setCheckedBaseButtonID(ButtonID: Int) {
 
         with(this) {
 
             putInt(SharedPrefKey.CheckedBaseButtonID.toString(), ButtonID)
+            apply()
+        }
+    }
+
+    private fun SharedPreferences.Editor.setCheckedSortingButtonID(ButtonID: Int) {
+
+        with(this) {
+
+            putInt(SharedPrefKey.CheckedSortFilterButtonID.toString(), ButtonID)
             apply()
         }
     }

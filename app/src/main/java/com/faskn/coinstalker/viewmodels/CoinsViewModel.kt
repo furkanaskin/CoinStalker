@@ -45,10 +45,10 @@ class CoinsViewModel(application: Application) : AndroidViewModel(application) {
 
     }
 
-    fun getCoins(base: String) {
+    fun getCoins(base: String?, sort: String?) {
         GlobalScope.launch(Dispatchers.Main) {
             val service = RetrofitFactory.makeRetrofitService()
-            val coinsData = service.getCoins(base).await()
+            val coinsData = service.getCoins(base, sort).await()
 
             if (coinsData.isSuccessful) {
                 val list = coinsData.body()!!.data
@@ -56,15 +56,15 @@ class CoinsViewModel(application: Application) : AndroidViewModel(application) {
             }
 
             Timer("getCoinsTimer", false).schedule(3000) {
-                getCoins(base)
+                getCoins(base, sort)
             }
         }
     }
 
-    fun getCoinInfo(coinID: Int) {
+    fun getCoinInfo(coinID: Int, base: String?) {
         GlobalScope.launch(Dispatchers.Main) {
             val service = RetrofitFactory.makeRetrofitService()
-            val coinInfoData = service.getCoinData(coinID).await()
+            val coinInfoData = service.getCoinData(coinID, base).await()
             val coinData = coinInfoData.body()!!.data
 
             if (coinInfoData.isSuccessful) {
@@ -74,10 +74,10 @@ class CoinsViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun getCoinHistory(coinID: Int) {
+    fun getCoinHistory(coinID: Int, base: String?) {
         GlobalScope.launch(Dispatchers.Main) {
             val service = RetrofitFactory.makeRetrofitService()
-            val coinHistoryData = service.getCoinHistory(coinID).await()
+            val coinHistoryData = service.getCoinHistory(coinID, base).await()
             val coinHistory = coinHistoryData.body()!!.data
 
             if (coinHistoryData.isSuccessful) {

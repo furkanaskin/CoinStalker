@@ -1,8 +1,10 @@
 package com.faskn.coinstalker.base
 
 import android.annotation.SuppressLint
+import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import com.faskn.coinstalker.utils.SharedPrefKey
 import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.formatter.IAxisValueFormatter
 import java.math.BigDecimal
@@ -10,6 +12,14 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 open class BaseFragment : Fragment() {
+
+    private val sharedPref by lazy {
+        activity?.getSharedPreferences(
+            SharedPrefKey.PrivateSharedPref.toString(),
+            Context.MODE_PRIVATE
+        )
+    }
+
     fun navigate(action: Int) {
         view?.let { _view ->
             Navigation.findNavController(_view).navigate(action)
@@ -37,6 +47,14 @@ open class BaseFragment : Fragment() {
             12 -> sign + volume.substring(0, 3) + "." + volume.substring(3, 5) + "Mr"
             else -> sign + volume
         }
+    }
+
+    fun getBase(): String? {
+        return sharedPref?.getString(SharedPrefKey.Base.toString(), "TRY")
+    }
+
+    fun getSort(): String? {
+        return sharedPref?.getString(SharedPrefKey.SortFilter.toString(), "coinranking")
     }
 
     class MyFormatter(val data: ArrayList<Float>) : IAxisValueFormatter {

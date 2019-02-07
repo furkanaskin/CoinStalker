@@ -3,7 +3,6 @@ package com.faskn.coinstalker.fragments
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.content.Context
 import android.os.Bundle
 import android.view.*
 import android.view.animation.AnimationUtils
@@ -21,7 +20,6 @@ import com.faskn.coinstalker.base.BaseFragment
 import com.faskn.coinstalker.model.Coin
 import com.faskn.coinstalker.utils.FilterDialogHelper
 import com.faskn.coinstalker.utils.ListPaddingDecoration
-import com.faskn.coinstalker.utils.SharedPrefKey
 import com.faskn.coinstalker.viewmodels.CoinsViewModel
 import kotlinx.android.synthetic.main.fragment_coins.*
 
@@ -34,13 +32,6 @@ class CoinsFragment : BaseFragment() {
     private val viewModel by lazy {
         ViewModelProviders.of(this).get(CoinsViewModel::class.java)
     } // Create vm.
-    private val sharedPref by lazy {
-        activity?.getSharedPreferences(
-            SharedPrefKey.PrivateSharedPref.toString(),
-            Context.MODE_PRIVATE
-        )
-    }
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -93,7 +84,7 @@ class CoinsFragment : BaseFragment() {
             findNavController().navigate(action)
         }
 
-        viewModel.getCoins(this.getBase()!!) // Get data
+        viewModel.getCoins(getBase(), getSort()) // Get data
         viewModel.coinsLiveData.observe(this@CoinsFragment, Observer { Data ->
             // Observe the data
             val adapter = CoinAdapter(Data.coins as ArrayList<Coin>, Data.base, itemOnClick)
@@ -138,8 +129,4 @@ class CoinsFragment : BaseFragment() {
             func()
         }.create()
 
-
-    private fun getBase(): String? {
-        return sharedPref?.getString(SharedPrefKey.Base.toString(), "TRY")
-    }
 }

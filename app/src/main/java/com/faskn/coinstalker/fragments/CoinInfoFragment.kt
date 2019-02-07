@@ -37,6 +37,8 @@ class CoinInfoFragment : BaseFragment() {
 
     private var expandableLayout: ExpandableRelativeLayout by Delegates.notNull()
     private lateinit var commentCoinSymbol: String // Define a string for CommentsFragment bundle.
+    private lateinit var commentCoinSign: String
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,7 +57,7 @@ class CoinInfoFragment : BaseFragment() {
             AnimationUtils.loadAnimation(this.context, R.anim.fade_in)
 
         val viewModel = ViewModelProviders.of(this).get(CoinsViewModel::class.java) // Create vm
-        viewModel.getCoinInfo(getCoinID())
+        viewModel.getCoinInfo(getCoinID(), getBase())
 
         tv_selectedBar.visibility = View.GONE //Hide selected bar text
 
@@ -63,16 +65,27 @@ class CoinInfoFragment : BaseFragment() {
 
             // Data filling stuffs starts here..
             commentCoinSymbol = Data.coin.symbol
+            commentCoinSign = Data.base.sign
 
             tv_info_coinName.text = Data.coin.name
             tv_info_coin_rank.text = "#${Data.coin.rank}"
             if (Data.coin.change > 0) {
                 tv_info_coin_change.text = "+${Data.coin.change}"
-                tv_info_coin_change.setTextColor(getColor(this.context!!, R.color.colorPosivite))
+                tv_info_coin_change.setTextColor(
+                    getColor(
+                        this.context!!,
+                        R.color.colorPosivite
+                    )
+                )
                 Glide.with(view.context).load(R.drawable.arrow_up).into(iv_info_chance_arrow)
             } else {
                 tv_info_coin_change.text = Data.coin.change.toString()
-                tv_info_coin_change.setTextColor(getColor(this.context!!, R.color.colorNegative))
+                tv_info_coin_change.setTextColor(
+                    getColor(
+                        this.context!!,
+                        R.color.colorNegative
+                    )
+                )
                 Glide.with(view.context).load(R.drawable.arrow_down).into(iv_info_chance_arrow)
 
 
@@ -87,12 +100,12 @@ class CoinInfoFragment : BaseFragment() {
             tv_infoDetail_text_totalSupply.text = getString(R.string.toplamPara)
 
             tv_infoDetail_allTimeHigh.text =
-                    priceBeautifier(Data.coin.allTimeHigh.price, Data.base.sign)
+                    priceBeautifier(Data.coin.allTimeHigh.price, commentCoinSign)
             tv_infoDetail_volume.text =
-                    volumeBeautifier(Data.coin.volume.toString(), Data.base.sign)
+                    volumeBeautifier(Data.coin.volume.toString(), commentCoinSign)
             tv_infoDetail_marketCap.text =
-                    volumeBeautifier(Data.coin.marketCap.toString(), Data.base.sign)
-            tv_infoDetail_currentValue.text = priceBeautifier(Data.coin.price, Data.base.sign)
+                    volumeBeautifier(Data.coin.marketCap.toString(), commentCoinSign)
+            tv_infoDetail_currentValue.text = priceBeautifier(Data.coin.price, commentCoinSign)
 
             tv_infoDetail_circulatingSupply.text = "${Data.coin.circulatingSupply} Adet"
             tv_infoDetail_totalSupply.text = "${Data.coin.totalSupply} Adet"
@@ -111,7 +124,7 @@ class CoinInfoFragment : BaseFragment() {
 
 
 
-        viewModel.getCoinHistory(getCoinID())  // Get coinHistory for barChart
+        viewModel.getCoinHistory(getCoinID(), getBase())  // Get coinHistory for barChart
         val barGroup = ArrayList<BarEntry>()
         val timestampArray = ArrayList<Float>()
         viewModel.coinHistoryLiveData.observe(this@CoinInfoFragment, Observer { Data ->
@@ -159,14 +172,13 @@ class CoinInfoFragment : BaseFragment() {
                 override fun onNothingSelected() {
                 }
 
-                @SuppressLint("SetTextI18n")
                 override fun onValueSelected(e: Entry?, h: Highlight?) {
                     val date = MyFormatter(timestampArray).getFormattedValue(
                         e!!.x,
                         axis = null
                     )
 
-                    tv_selectedBar.text = "${e.y}₺  $date"
+                    tv_selectedBar.text = "${e.y}$commentCoinSign  $date"
                     tv_selectedBar.visibility = View.VISIBLE
                     tv_selectedBar.startAnimation(animationFadein)
 
@@ -190,13 +202,14 @@ class CoinInfoFragment : BaseFragment() {
                 expandableLayout.move(500)
                 val commentsFragment = CommentsFragment.newInstance(commentCoinSymbol)
                 val transaction: FragmentTransaction = fragmentManager?.beginTransaction()!!
-                transaction.add(R.id.frame_comments, commentsFragment, "commentFragment").commit()
+                transaction.add(R.id.frame_comments, commentsFragment, "commentFragment")
+                    .commit()
                 iv_expandableIcon.setImageResource(R.drawable.arrow_up)
             }
         }
     }
 
-    private fun getCoinID(): Int {
+    fun getCoinID(): Int {
         return CoinInfoFragmentArgs.fromBundle(this.arguments!!).coinID
     }
 }

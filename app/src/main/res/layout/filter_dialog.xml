@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -47,7 +48,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:nestedScrollingEnabled="true">
+
 
         <TextView
             android:id="@+id/tv_moneyType"
@@ -101,6 +104,61 @@
 
         </RadioGroup>
 
+        <TextView
+            android:id="@+id/tv_sortType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sortType"
+            android:textColor="@android:color/white"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_below="@id/radioGroupCoinType" />
+
+        <RadioGroup
+            android:id="@+id/radioGroupSortType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_sortType"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@color/colorPrimaryDark">
+
+            <RadioButton
+                android:id="@+id/radioPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/deger"
+                android:textColor="@color/colorPrettyOrange"
+                android:buttonTint="@color/colorAccent"
+                android:textSize="16sp" />
+
+            <RadioButton
+                android:id="@+id/radioMarketCap"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/piyasa_degeri"
+                android:textColor="@color/colorPrettyOrange"
+                android:buttonTint="@color/colorAccent"
+                android:textSize="16sp" />
+
+            <RadioButton
+                android:id="@+id/radioChange"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/degisim"
+                android:textColor="@color/colorPrettyOrange"
+                android:buttonTint="@color/colorAccent"
+                android:textSize="16sp" />
+
+        </RadioGroup>
+
+
     </RelativeLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
