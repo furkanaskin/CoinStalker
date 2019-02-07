@@ -27,9 +27,13 @@
     <string name="info">Bilgi</string>
     <string name="karsilastir">Karşılaştır</string>
     <string name="close">Kapat</string>
-    <string name="chooseMoneytype">Lütfen para birimi seçiniz.</string>
+    <string name="chooseMoneytype">Lütfen ana para birimini seçiniz.</string>
     <string name="sortType">Lütfen sıralama türünü seçiniz.</string>
+    <string name="timePeriod">Lütfen zaman periyodu seçiniz.</string>
     <string name="onayla">ONAYLA</string>
     <string name="tamam">Tamam</string>
     <string name="deger">Değer</string>
+    <string name="gunluk">Günlük</string>
+    <string name="haftalik">Haftalık</string>
+    <string name="aylik">Aylık</string>
 </resources>

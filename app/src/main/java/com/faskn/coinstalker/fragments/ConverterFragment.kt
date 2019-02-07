@@ -32,7 +32,7 @@ class ConverterFragment : BaseFragment() {
         val viewModel = ViewModelProviders.of(this@ConverterFragment)
             .get(CoinsViewModel::class.java) // Create vm
 
-        viewModel.getCoins(getBase(), getSort())
+        viewModel.getCoins(getBase(), "price", "30d")
         viewModel.coinsLiveData.observe(this@ConverterFragment, Observer { Data ->
             if (COIN_SPINNER_FLAG != 0) {
                 Data.coins.forEachIndexed { index, element ->

@@ -57,6 +57,10 @@ open class BaseFragment : Fragment() {
         return sharedPref?.getString(SharedPrefKey.SortFilter.toString(), "coinranking")
     }
 
+    fun getTimePeriod(): String? {
+        return sharedPref?.getString(SharedPrefKey.TimePeriod.toString(), "24h")
+    }
+
     class MyFormatter(val data: ArrayList<Float>) : IAxisValueFormatter {
         override fun getFormattedValue(value: Float, axis: AxisBase?): String {
             return unixTimeStampFormatter(data[value.toInt()].toLong())

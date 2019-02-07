@@ -84,7 +84,7 @@ class CoinsFragment : BaseFragment() {
             findNavController().navigate(action)
         }
 
-        viewModel.getCoins(getBase(), getSort()) // Get data
+        viewModel.getCoins(getBase(), getSort(), getTimePeriod()) // Get data
         viewModel.coinsLiveData.observe(this@CoinsFragment, Observer { Data ->
             // Observe the data
             val adapter = CoinAdapter(Data.coins as ArrayList<Coin>, Data.base, itemOnClick)

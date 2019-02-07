@@ -42,6 +42,11 @@ class FilterDialogHelper(context: Context) : BaseDialogHelper() {
         dialogView.findViewById<RadioGroup>(R.id.radioGroupSortType)
     }
 
+    //  Time Period Radio Group
+    private val radioGroupTimePeriod: RadioGroup by lazy {
+        dialogView.findViewById<RadioGroup>(R.id.radioGroupTimePeriod)
+    }
+
     fun exitButtonClickListener(func: (() -> Unit)? = null) =
         with(exitButton) {
             setClickListenerToDialogIcon(func)
@@ -57,6 +62,10 @@ class FilterDialogHelper(context: Context) : BaseDialogHelper() {
         with(radioGroupSortType) {
             setSortingRadioGroupClickListener(func)
         }
+
+        with(radioGroupTimePeriod) {
+            setTimerPeriodRadioGroupClickListener(func)
+        }
     }
 
     fun retrieveChoices() {
@@ -64,12 +73,19 @@ class FilterDialogHelper(context: Context) : BaseDialogHelper() {
             sharedPref.getInt(SharedPrefKey.CheckedBaseButtonID.toString(), -1)
         val lastCheckedSortType =
             sharedPref.getInt(SharedPrefKey.CheckedSortFilterButtonID.toString(), -1)
+        val lastCheckedTimePeriod =
+            sharedPref.getInt(SharedPrefKey.CheckedTimePeriodButtonID.toString(), -1)
+
         if (lastCheckedCoinType > 0) {
             radioGroupCoinType.check(lastCheckedCoinType)
         }
 
         if (lastCheckedSortType > 0) {
             radioGroupSortType.check(lastCheckedSortType)
+        }
+
+        if (lastCheckedTimePeriod > 0) {
+            radioGroupTimePeriod.check(lastCheckedTimePeriod)
         }
     }
 
@@ -95,6 +111,14 @@ class FilterDialogHelper(context: Context) : BaseDialogHelper() {
             val checkedItem = group.findViewById<RadioButton>(checkedId)
             sharedPref.edit().setFilter(checkedItem.text as String)
             sharedPref.edit().setCheckedSortingButtonID(checkedId)
+        }
+
+    private fun RadioGroup.setTimerPeriodRadioGroupClickListener(func: (() -> Unit)?) =
+        setOnCheckedChangeListener { group, checkedId ->
+            func?.invoke()
+            val checkedItem = group.findViewById<RadioButton>(checkedId)
+            sharedPref.edit().setTimePeriod(checkedItem.text as String)
+            sharedPref.edit().setCheckedTimePeriodButtonID(checkedId)
         }
 
     private fun SharedPreferences.Editor.setBase(Base: String) {
@@ -123,6 +147,23 @@ class FilterDialogHelper(context: Context) : BaseDialogHelper() {
         }
     }
 
+    private fun SharedPreferences.Editor.setTimePeriod(timePeriod: String) {
+
+        val period = when (timePeriod) {
+            "Günlük" -> "24h"
+            "Haftalık" -> "7d"
+            "Aylık" -> "30d"
+            else -> "24h"
+
+        }
+
+        with(this) {
+
+            putString(SharedPrefKey.TimePeriod.toString(), period)
+            apply()
+        }
+    }
+
     private fun SharedPreferences.Editor.setCheckedBaseButtonID(ButtonID: Int) {
 
         with(this) {
@@ -137,6 +178,15 @@ class FilterDialogHelper(context: Context) : BaseDialogHelper() {
         with(this) {
 
             putInt(SharedPrefKey.CheckedSortFilterButtonID.toString(), ButtonID)
+            apply()
+        }
+    }
+
+    private fun SharedPreferences.Editor.setCheckedTimePeriodButtonID(ButtonID: Int) {
+
+        with(this) {
+
+            putInt(SharedPrefKey.CheckedTimePeriodButtonID.toString(), ButtonID)
             apply()
         }
     }

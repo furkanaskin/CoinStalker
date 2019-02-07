@@ -157,6 +157,59 @@
 
         </RadioGroup>
 
+        <TextView
+            android:id="@+id/tv_timePeriod"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/timePeriod"
+            android:textColor="@android:color/white"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_below="@id/radioGroupSortType" />
+
+        <RadioGroup
+            android:id="@+id/radioGroupTimePeriod"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_timePeriod"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@color/colorPrimaryDark">
+
+            <RadioButton
+                android:id="@+id/radio24h"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/gunluk"
+                android:textColor="@color/colorPrettyOrange"
+                android:buttonTint="@color/colorAccent"
+                android:textSize="16sp" />
+
+            <RadioButton
+                android:id="@+id/radio7d"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/haftalik"
+                android:textColor="@color/colorPrettyOrange"
+                android:buttonTint="@color/colorAccent"
+                android:textSize="16sp" />
+
+            <RadioButton
+                android:id="@+id/radio30d"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/aylik"
+                android:textColor="@color/colorPrettyOrange"
+                android:buttonTint="@color/colorAccent"
+                android:textSize="16sp" />
+
+        </RadioGroup>
+
 
     </RelativeLayout>
 
