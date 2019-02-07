@@ -17,7 +17,7 @@ interface RetrofitService {
     fun getCoinData(@Path("coinID") coinID: Int, @Query("base") coinBase: String?): Deferred<Response<CoinInfoResponse>>
 
     @GET("coin/{coinID}/history/24h?")
-    fun getCoinHistory(@Path("coinID") coinID: Int, @Query("base") coinBase: String?, @Query("timePeriod") timePeriod: String?): Deferred<Response<CoinHistoryResponse>>
+    fun getCoinHistory(@Path("coinID") coinID: Int, @Query("base") coinBase: String?): Deferred<Response<CoinHistoryResponse>>
 
 }
 
