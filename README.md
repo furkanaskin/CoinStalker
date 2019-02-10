@@ -6,7 +6,7 @@
 
 ## CoinStalker
 
-This project about cryptocurrency coins. I create this project for improving my skills. If you have good ideas about that project you can open PR or issue!
+This project about cryptocurrency coins. I create this project for improving my skills. If you have good ideas about that project, you can open PR or issue!
 
 ![coinstalker](https://user-images.githubusercontent.com/22769589/50541103-6ac52c80-0baf-11e9-821e-6f57f15d4862.png)
 ## Libraries Used
