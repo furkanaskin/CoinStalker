@@ -9,10 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.faskn.coinstalker.R
 import com.faskn.coinstalker.base.BaseFragment
-import com.faskn.coinstalker.viewmodels.CoinsViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_connection.*
 
@@ -20,6 +18,7 @@ import kotlinx.android.synthetic.main.fragment_connection.*
 class ConnectionFragment : BaseFragment() {
 
     private val bottomNav by lazy { activity?.bottom_navigation }
+    private val toolbar by lazy { activity?.toolbar }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,8 +30,6 @@ class ConnectionFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val viewModel = ViewModelProviders.of(this@ConnectionFragment)
-            .get(CoinsViewModel::class.java) // Create vm
 
         val animationFadein =
             AnimationUtils.loadAnimation(this.context, com.faskn.coinstalker.R.anim.fade_in)
@@ -44,12 +41,14 @@ class ConnectionFragment : BaseFragment() {
             if (status) {
                 navigate(R.id.action_connectionFragment_to_coinsFragment)
                 bottomNav?.visibility = View.VISIBLE
-                Log.v("qqq", "Connection successful.")
+                toolbar?.visibility = View.VISIBLE
+                Log.v("Connection Info", "Connection successful.")
             } else {
                 pb_connection.visibility = View.GONE
                 tv_error.startAnimation(animationFadein)
                 bottomNav?.visibility = View.GONE
-                Log.v("qqq", "No internet connection.")
+                toolbar?.visibility = View.GONE
+                Log.v("Connection Info", "No internet connection.")
             }
         })
 

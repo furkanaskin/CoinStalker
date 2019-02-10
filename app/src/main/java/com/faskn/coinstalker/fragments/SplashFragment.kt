@@ -9,10 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
 import com.faskn.coinstalker.base.BaseFragment
-import com.faskn.coinstalker.viewmodels.CoinsViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_splash.*
 
@@ -35,42 +33,19 @@ class SplashFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val viewModel = ViewModelProviders.of(this).get(CoinsViewModel::class.java) // Create vm
-
-        val animationBlink =
-            AnimationUtils.loadAnimation(this.context, com.faskn.coinstalker.R.anim.blink)
         val animationFadein =
             AnimationUtils.loadAnimation(this.context, com.faskn.coinstalker.R.anim.fade_in)
-        val animationFadeout =
-            AnimationUtils.loadAnimation(this.context, com.faskn.coinstalker.R.anim.fade_out)
-        iv_coinstalker.visibility = View.GONE
 
-        av_splash_animation.setAnimation("splashAnimation.json")
-        av_splash_animation.speed = 3f
-        av_splash_animation.playAnimation()
+        iv_coinstalker.visibility = View.GONE
 
         Glide.with(view.context).load(com.faskn.coinstalker.R.drawable.coinranking)
             .into(iv_coinRanking_logo)
 
+        iv_coinstalker.visibility = View.VISIBLE
+        iv_coinstalker.startAnimation(animationFadein)
+
 
         object : CountDownTimer(4000, 1000) {
-            override fun onFinish() {
-                av_splash_animation.visibility = View.GONE
-                tv_loading.startAnimation(animationFadeout)
-                tv_loading.visibility = View.GONE
-                iv_coinstalker.visibility = View.VISIBLE
-                iv_coinstalker.startAnimation(animationFadein)
-
-            }
-
-            override fun onTick(millisUntilFinished: Long) {
-                tv_loading.startAnimation(animationBlink)
-                tv_loading.append(".")
-            }
-
-        }.start()
-
-        object : CountDownTimer(8000, 1000) {
             override fun onFinish() {
                 viewModel.checkConnectionStatus()
                 viewModel.connectionStatusLiveData.observe(this@SplashFragment, Observer { status ->
@@ -78,12 +53,12 @@ class SplashFragment : BaseFragment() {
                         navigate(com.faskn.coinstalker.R.id.action_splashFragment_to_coinsFragment)
                         bottomNav?.visibility = View.VISIBLE
                         actionBar?.visibility = View.VISIBLE
-                        Log.v("qqq", "Connection successful.")
+                        Log.v("Connection Info", "Connection successful.")
                     } else {
                         navigate(com.faskn.coinstalker.R.id.action_splashFragment_to_connectionFragment)
                         bottomNav?.visibility = View.GONE
                         actionBar?.visibility = View.GONE
-                        Log.v("qqq", "No internet connection.")
+                        Log.v("Connection Info", "No internet connection.")
                     }
                 })
             }

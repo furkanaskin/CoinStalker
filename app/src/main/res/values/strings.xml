@@ -36,4 +36,6 @@
     <string name="gunluk">Günlük</string>
     <string name="haftalik">Haftalık</string>
     <string name="aylik">Aylık</string>
+    <string name="coinranking">CoinRanking</string>
+    <string name="data_provider">İçerik sağlayıcı taraf</string>
 </resources>

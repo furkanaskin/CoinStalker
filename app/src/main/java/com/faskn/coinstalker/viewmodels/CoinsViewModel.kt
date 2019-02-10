@@ -6,10 +6,10 @@ import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import com.faskn.coinstalker.di.makeRetrofitService
 import com.faskn.coinstalker.model.CoinHistoryData
 import com.faskn.coinstalker.model.CoinInfoData
 import com.faskn.coinstalker.model.Data
-import com.faskn.coinstalker.network.RetrofitFactory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -19,16 +19,13 @@ import kotlin.concurrent.schedule
 
 class CoinsViewModel(application: Application) : AndroidViewModel(application) {
 
-
     private val connectivityManager =
         application.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
-    private val tag = "CoinsViewModel"
-
+    private val service = makeRetrofitService() // From RemoteDataModule
 
     val connectionStatusLiveData = MutableLiveData<Boolean>()
     val coinsLiveData = MutableLiveData<Data>()
-    val progressLiveData = MutableLiveData<Boolean>()
     val coinInfoLiveData = MutableLiveData<CoinInfoData>()
     val coinHistoryLiveData = MutableLiveData<CoinHistoryData>()
 
@@ -47,12 +44,16 @@ class CoinsViewModel(application: Application) : AndroidViewModel(application) {
 
     fun getCoins(base: String?, sort: String?, timePeriod: String?) {
         GlobalScope.launch(Dispatchers.Main) {
-            val service = RetrofitFactory.makeRetrofitService()
+
+
             val coinsData = service.getCoins(base, sort, timePeriod).await()
 
             if (coinsData.isSuccessful) {
                 val list = coinsData.body()!!.data
-                list.let { coinsLiveData.postValue(list) }
+                list.let {
+                    coinsLiveData.postValue(list)
+
+                }
             }
 
             Timer("getCoinsTimer", false).schedule(3000) {
@@ -63,7 +64,7 @@ class CoinsViewModel(application: Application) : AndroidViewModel(application) {
 
     fun getCoinInfo(coinID: Int, base: String?) {
         GlobalScope.launch(Dispatchers.Main) {
-            val service = RetrofitFactory.makeRetrofitService()
+
             val coinInfoData = service.getCoinData(coinID, base).await()
             val coinData = coinInfoData.body()!!.data
 
@@ -76,7 +77,7 @@ class CoinsViewModel(application: Application) : AndroidViewModel(application) {
 
     fun getCoinHistory(coinID: Int, base: String?) {
         GlobalScope.launch(Dispatchers.Main) {
-            val service = RetrofitFactory.makeRetrofitService()
+
             val coinHistoryData = service.getCoinHistory(coinID, base).await()
             val coinHistory = coinHistoryData.body()!!.data
 

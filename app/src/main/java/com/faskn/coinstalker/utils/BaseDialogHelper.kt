@@ -30,9 +30,4 @@ abstract class BaseDialogHelper {
         return dialog!!
     }
 
-    //  cancel listener
-    open fun onCancelListener(func: () -> Unit): AlertDialog.Builder? =
-        builder.setOnCancelListener {
-            func()
-        }
 }

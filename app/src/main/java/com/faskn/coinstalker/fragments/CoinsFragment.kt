@@ -3,6 +3,7 @@ package com.faskn.coinstalker.fragments
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.graphics.Color
 import android.os.Bundle
 import android.view.*
 import android.view.animation.AnimationUtils
@@ -10,7 +11,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,7 +20,7 @@ import com.faskn.coinstalker.base.BaseFragment
 import com.faskn.coinstalker.model.Coin
 import com.faskn.coinstalker.utils.FilterDialogHelper
 import com.faskn.coinstalker.utils.ListPaddingDecoration
-import com.faskn.coinstalker.viewmodels.CoinsViewModel
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_coins.*
 
 
@@ -29,9 +29,6 @@ class CoinsFragment : BaseFragment() {
 
     private var RECYCLER_ANIMATION_FLAG = 0
     private var filterDialog: AlertDialog? = null
-    private val viewModel by lazy {
-        ViewModelProviders.of(this).get(CoinsViewModel::class.java)
-    } // Create vm.
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,7 +48,6 @@ class CoinsFragment : BaseFragment() {
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.action_filtrele -> {
-            Toast.makeText(this.context, "Filtrele", Toast.LENGTH_LONG).show()
             showDialog()
             true
         }
@@ -71,7 +67,6 @@ class CoinsFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         pb_coins.visibility = View.VISIBLE
-
 
         val coinsRecyclerView =
             view.findViewById<RecyclerView>(R.id.container_coins)
@@ -117,6 +112,14 @@ class CoinsFragment : BaseFragment() {
                 retrieveChoices()
                 exitButtonClickListener {
                     navigate(R.id.action_coinsFragment_pop)
+
+                    val snackbar = Snackbar.make(
+                        layout_coins,
+                        "Filtreleme başarılı bir şekilde uygulandı.",
+                        Snackbar.LENGTH_LONG
+                    )
+                    snackbar.view.setBackgroundColor(Color.parseColor("#3CD382"))
+                    snackbar.show()
                 }
             }
             //  and showing

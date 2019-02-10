@@ -26,8 +26,6 @@ class MainActivity : BaseActivity() {
         )
 
         setSupportActionBar(findViewById(R.id.toolbar))
-
-
     }
 
 

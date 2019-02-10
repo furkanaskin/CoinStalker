@@ -15,11 +15,9 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getColor
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
 import com.faskn.coinstalker.R
 import com.faskn.coinstalker.base.BaseFragment
-import com.faskn.coinstalker.viewmodels.CoinsViewModel
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.BarData
@@ -39,7 +37,6 @@ class CoinInfoFragment : BaseFragment() {
     private lateinit var commentCoinSymbol: String // Define a string for CommentsFragment bundle.
     private lateinit var commentCoinSign: String
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -56,7 +53,6 @@ class CoinInfoFragment : BaseFragment() {
         val animationFadein =
             AnimationUtils.loadAnimation(this.context, R.anim.fade_in)
 
-        val viewModel = ViewModelProviders.of(this).get(CoinsViewModel::class.java) // Create vm
         viewModel.getCoinInfo(getCoinID(), getBase())
 
         tv_selectedBar.visibility = View.GONE //Hide selected bar text
@@ -144,6 +140,7 @@ class CoinInfoFragment : BaseFragment() {
 
             val data = BarData(barDataSet)
             val formatter = MyFormatter(timestampArray)
+
             barChart.data = data
             barChart.xAxis.position = XAxis.XAxisPosition.BOTTOM
             barChart.xAxis.labelCount = 2

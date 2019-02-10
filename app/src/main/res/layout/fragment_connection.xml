@@ -24,7 +24,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
         android:text="@string/connection_failed"
-        android:textColor="@color/colorPrettyOrange"
+        android:textColor="@color/colorAccent"
         android:textSize="16sp"
         android:textStyle="bold" />
 
@@ -38,7 +38,7 @@
         android:text="@string/tekrar_dene"
         app:backgroundTint="@android:color/transparent"
         app:cornerRadius="4dp"
-        app:strokeColor="@color/colorPrimaryDark"
+        app:strokeColor="@color/colorAccent"
         app:strokeWidth="1dp" />
 
     <ProgressBar

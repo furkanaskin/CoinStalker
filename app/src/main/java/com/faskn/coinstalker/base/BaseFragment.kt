@@ -5,13 +5,17 @@ import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.faskn.coinstalker.utils.SharedPrefKey
+import com.faskn.coinstalker.viewmodels.CoinsViewModel
 import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.formatter.IAxisValueFormatter
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.math.BigDecimal
 import java.text.SimpleDateFormat
 import java.util.*
 
 open class BaseFragment : Fragment() {
+
+    val viewModel: CoinsViewModel by viewModel()
 
     private val sharedPref by lazy {
         activity?.getSharedPreferences(

@@ -7,10 +7,8 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.faskn.coinstalker.R
 import com.faskn.coinstalker.base.BaseFragment
-import com.faskn.coinstalker.viewmodels.CoinsViewModel
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.fragment_converter.*
 
@@ -28,9 +26,6 @@ class ConverterFragment : BaseFragment() {
 
         val actionBar = activity?.actionBar
         setHasOptionsMenu(true)
-
-        val viewModel = ViewModelProviders.of(this@ConverterFragment)
-            .get(CoinsViewModel::class.java) // Create vm
 
         viewModel.getCoins(getBase(), "price", "30d")
         viewModel.coinsLiveData.observe(this@ConverterFragment, Observer { Data ->
