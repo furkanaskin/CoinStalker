@@ -1,11 +1,10 @@
 package com.faskn.coinstalker.viewmodels
 
 import android.app.Application
-import android.content.Context
-import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import com.faskn.coinstalker.di.createConnectionManager
 import com.faskn.coinstalker.di.makeRetrofitService
 import com.faskn.coinstalker.model.CoinHistoryData
 import com.faskn.coinstalker.model.CoinInfoData
@@ -19,8 +18,7 @@ import kotlin.concurrent.schedule
 
 class CoinsViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val connectivityManager =
-        application.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    private val connectivityManager = createConnectionManager(application, application)
 
     private val service = makeRetrofitService() // From RemoteDataModule
 
@@ -44,7 +42,6 @@ class CoinsViewModel(application: Application) : AndroidViewModel(application) {
 
     fun getCoins(base: String?, sort: String?, timePeriod: String?) {
         GlobalScope.launch(Dispatchers.Main) {
-
 
             val coinsData = service.getCoins(base, sort, timePeriod).await()
 

@@ -35,7 +35,6 @@
             android:textColor="@android:color/white"
             android:layout_marginStart="16dp" />
 
-
     </RelativeLayout>
 
 
@@ -210,8 +209,6 @@
 
         </RadioGroup>
 
-
     </RelativeLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,7 +5,7 @@
         <item name="colorPrimary">#202833</item>
         <item name="colorPrimaryDark">#12151C</item>
         <item name="colorAccent">#FF8252</item>
-        <item name="fontFamily">@font/ubuntu</item>
+        <item name="android:typeface">serif</item>
         <item name="android:actionOverflowButtonStyle">@style/MyActionButtonOverflow</item>
     </style>
 

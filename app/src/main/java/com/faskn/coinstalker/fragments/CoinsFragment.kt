@@ -21,11 +21,15 @@ import com.faskn.coinstalker.model.Coin
 import com.faskn.coinstalker.utils.FilterDialogHelper
 import com.faskn.coinstalker.utils.ListPaddingDecoration
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_coins.*
 
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class CoinsFragment : BaseFragment() {
+
+    private val bottomNav by lazy { activity?.bottom_navigation }
+    private val actionBar by lazy { activity?.toolbar }
 
     private var RECYCLER_ANIMATION_FLAG = 0
     private var filterDialog: AlertDialog? = null
@@ -48,7 +52,15 @@ class CoinsFragment : BaseFragment() {
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.action_filtrele -> {
-            showDialog()
+            try {
+                showDialog()
+            } catch (e: Error) {
+                Toast.makeText(
+                    this.context,
+                    "Oopss.. Ufak bir hata oldu. Tekrar dener misin?",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
             true
         }
 
@@ -90,6 +102,12 @@ class CoinsFragment : BaseFragment() {
                 RECYCLER_ANIMATION_FLAG += 1
             }
         })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        bottomNav?.visibility = View.VISIBLE
+        actionBar?.visibility = View.VISIBLE
     }
 
     private fun runLayoutAnimation(recyclerView: RecyclerView) {
