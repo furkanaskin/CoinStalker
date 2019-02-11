@@ -9,23 +9,29 @@ import com.faskn.coinstalker.di.makeRetrofitService
 import com.faskn.coinstalker.model.CoinHistoryData
 import com.faskn.coinstalker.model.CoinInfoData
 import com.faskn.coinstalker.model.Data
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import java.util.*
 import kotlin.concurrent.schedule
+import kotlin.coroutines.CoroutineContext
 
 
-class CoinsViewModel(application: Application) : AndroidViewModel(application) {
+class CoinsViewModel(application: Application) : AndroidViewModel(application), CoroutineScope {
 
-    private val connectivityManager = createConnectionManager(application, application)
+    private val connectivityManager =
+        createConnectionManager(application, application) // From ConnectionModule
     private val service = makeRetrofitService() // From RemoteDataModule
-
 
     val connectionStatusLiveData = MutableLiveData<Boolean>()
     val coinsLiveData = MutableLiveData<Data>()
     val coinInfoLiveData = MutableLiveData<CoinInfoData>()
     val coinHistoryLiveData = MutableLiveData<CoinHistoryData>()
+
+    private val job = Job()
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.IO + job
 
 
     fun checkConnectionStatus() {
@@ -37,12 +43,11 @@ class CoinsViewModel(application: Application) : AndroidViewModel(application) {
         } else {
             connectionStatusLiveData.postValue(false)
         }
-
     }
 
     fun getCoins(base: String?, sort: String?, timePeriod: String?) {
-        GlobalScope.launch(Dispatchers.Main) {
 
+        launch {
             val coinsData = service.getCoins(base, sort, timePeriod).await()
 
             if (coinsData.isSuccessful) {
@@ -60,28 +65,32 @@ class CoinsViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun getCoinInfo(coinID: Int, base: String?) {
-        GlobalScope.launch(Dispatchers.Main) {
 
+        launch {
             val coinInfoData = service.getCoinData(coinID, base).await()
             val coinData = coinInfoData.body()!!.data
 
             if (coinInfoData.isSuccessful) {
                 coinInfoLiveData.postValue(coinData)
             }
-
         }
     }
 
     fun getCoinHistory(coinID: Int, base: String?) {
-        GlobalScope.launch(Dispatchers.Main) {
 
+        launch {
             val coinHistoryData = service.getCoinHistory(coinID, base).await()
             val coinHistory = coinHistoryData.body()!!.data
 
             if (coinHistoryData.isSuccessful) {
                 coinHistoryLiveData.postValue(coinHistory)
             }
+
         }
     }
 
+    override fun onCleared() {
+        super.onCleared()
+        job.cancel()
+    }
 }

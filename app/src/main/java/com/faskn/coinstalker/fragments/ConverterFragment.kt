@@ -24,7 +24,6 @@ class ConverterFragment : BaseFragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_converter, container, false)
 
-        val actionBar = activity?.actionBar
         setHasOptionsMenu(true)
 
         viewModel.getCoins(getBase(), "price", "30d")

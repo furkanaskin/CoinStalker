@@ -1,7 +1,7 @@
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/furkanaskin/CoinStalker/issues)
 [![Awesome Kotlin Badge](https://kotlin.link/awesome-kotlin.svg)](https://github.com/KotlinBy/awesome-kotlin)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/c16264cd5a0b4474a0768002b2c2e070)](https://www.codacy.com/app/furkanaskin/CoinStalker?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=furkanaskin/CoinStalker&amp;utm_campaign=Badge_Grade)
-[![API](https://img.shields.io/badge/API-19%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=19)
+[![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21)
 
 
 ## CoinStalker

@@ -2,6 +2,7 @@ package com.faskn.coinstalker.fragments
 
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -153,10 +154,15 @@ class CommentsFragment : Fragment() {
     }
 
     private fun checkCommentData(commentData: ArrayList<CommentsDTO>) {
-        if (commentData.isEmpty()) {
-            tv_noComment.visibility = View.VISIBLE
-        } else {
-            tv_noComment.visibility = View.GONE
+        try {
+            if (commentData.isEmpty()) {
+                tv_noComment.visibility = View.VISIBLE
+            } else {
+                tv_noComment.visibility = View.GONE
+            }
+        } catch (error: IllegalStateException) {
+            Log.v("Comment Data", "Garip bir şekilde boş geldi?")
         }
+
     }
 }

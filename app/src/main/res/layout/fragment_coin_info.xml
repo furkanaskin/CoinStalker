@@ -417,7 +417,8 @@
             <FrameLayout
                 android:id="@+id/frame_comments"
                 android:layout_width="match_parent"
-                android:layout_height="450dp" />
+                android:layout_height="450dp"
+                android:background="@color/colorPrimary" />
         </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
 
     </RelativeLayout>
