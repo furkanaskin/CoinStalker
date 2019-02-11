@@ -2,7 +2,6 @@ package com.faskn.coinstalker.fragments
 
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.graphics.Color
 import android.os.Bundle
 import android.view.*
@@ -80,11 +79,11 @@ class CoinsFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         pb_coins.visibility = View.VISIBLE
 
-        val coinsRecyclerView =
-            view.findViewById<RecyclerView>(R.id.container_coins)
+        val coinsRecyclerView = view.findViewById<RecyclerView>(R.id.container_coins)
         coinsRecyclerView.layoutManager =
                 LinearLayoutManager(this.context, RecyclerView.VERTICAL, false)
-        coinsRecyclerView.addItemDecoration(ListPaddingDecoration(activity as Activity, 40, 40, 0))
+
+        coinsRecyclerView.addItemDecoration(ListPaddingDecoration(this.context!!, 40, 40, 0))
         val itemOnClick: (View, Int) -> Unit = { _, id ->
             val action =
                 CoinsFragmentDirections.actionCoinsFragmentToCoinInfoFragment(id) // Transfer id to CoinInfo Fragment.
@@ -111,9 +110,8 @@ class CoinsFragment : BaseFragment() {
     }
 
     private fun runLayoutAnimation(recyclerView: RecyclerView) {
-        val context = recyclerView.context
         val controller =
-            AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_from_bottom)
+            AnimationUtils.loadLayoutAnimation(this.context, R.anim.layout_animation_from_bottom)
 
         recyclerView.layoutAnimation = controller
         recyclerView.adapter!!.notifyDataSetChanged()

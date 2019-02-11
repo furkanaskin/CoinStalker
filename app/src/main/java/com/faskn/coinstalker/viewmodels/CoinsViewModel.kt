@@ -19,8 +19,8 @@ import kotlin.concurrent.schedule
 class CoinsViewModel(application: Application) : AndroidViewModel(application) {
 
     private val connectivityManager = createConnectionManager(application, application)
-
     private val service = makeRetrofitService() // From RemoteDataModule
+
 
     val connectionStatusLiveData = MutableLiveData<Boolean>()
     val coinsLiveData = MutableLiveData<Data>()

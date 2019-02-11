@@ -22,14 +22,13 @@ import java.math.BigDecimal
 class CoinViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
     @SuppressLint("SetTextI18n")
     fun bind(coin: Coin, base: Base, itemClickListener: (View, Int) -> Unit) {
+
         val txtShortCoinName: TextView = view.findViewById(R.id.tv_coinShortName)
         val txtFullCoinName: TextView = view.findViewById(R.id.tv_coinFullName)
         val txtPrice: TextView = view.findViewById(R.id.tv_coin_price)
         val txtChange: TextView = view.findViewById(R.id.tv_coin_change)
         val ivCoinLogo: CircularImageView = view.findViewById(R.id.iv_coinLogo)
         val ivChanceArrow: ImageView = view.findViewById(R.id.iv_chance_arrow)
-
-
 
         txtShortCoinName.text = coin.symbol
         txtFullCoinName.text = coin.name
@@ -51,18 +50,19 @@ class CoinViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
         val uri: Uri = Uri.parse(coin.iconUrl)
         GlideToVectorYou.justLoadImage(view.context as Activity, uri, ivCoinLogo)
+
         try {
             val color = Color.parseColor(coin.color)
             ivCoinLogo.setBorderColor(color)
         } catch (e: java.lang.Exception) {
-
+            Log.e("BorderColor", "Cannot set border color. Exception : $e")
         }
 
         try {
             val color = Color.parseColor(coin.color)
             txtFullCoinName.setTextColor(color)
         } catch (e: java.lang.Exception) {
-            Log.v("qqq", e.toString())
+            Log.e("BorderColor", "Cannot set text color. Exception : $e")
         }
 
         itemView.setOnClickListener { itemClickListener(view, coin.id) }

@@ -18,6 +18,7 @@ import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.faskn.coinstalker.R
 import com.faskn.coinstalker.base.BaseFragment
+import com.faskn.coinstalker.utils.MyFormatter
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.BarData
@@ -36,6 +37,12 @@ class CoinInfoFragment : BaseFragment() {
     private var expandableLayout: ExpandableRelativeLayout by Delegates.notNull()
     private lateinit var commentCoinSymbol: String // Define a string for CommentsFragment bundle.
     private lateinit var commentCoinSign: String
+    private val animationFadein by lazy {
+        AnimationUtils.loadAnimation(
+            this.context,
+            R.anim.fade_in
+        )
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,8 +57,7 @@ class CoinInfoFragment : BaseFragment() {
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val animationFadein =
-            AnimationUtils.loadAnimation(this.context, R.anim.fade_in)
+
 
         viewModel.getCoinInfo(getCoinID(), getBase())
 

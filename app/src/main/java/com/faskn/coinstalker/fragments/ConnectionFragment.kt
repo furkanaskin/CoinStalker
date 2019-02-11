@@ -19,6 +19,20 @@ class ConnectionFragment : BaseFragment() {
 
     private val bottomNav by lazy { activity?.bottom_navigation }
     private val toolbar by lazy { activity?.toolbar }
+    private var countDownTimer: CountDownTimer? = null
+    private val animationFadein by lazy {
+        AnimationUtils.loadAnimation(
+            this.context,
+            com.faskn.coinstalker.R.anim.fade_in
+        )
+    }
+    private val animationFadeout by lazy {
+        AnimationUtils.loadAnimation(
+            this.context,
+            com.faskn.coinstalker.R.anim.fade_out
+        )
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,12 +44,6 @@ class ConnectionFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val animationFadein =
-            AnimationUtils.loadAnimation(this.context, com.faskn.coinstalker.R.anim.fade_in)
-        val animationFadeout =
-            AnimationUtils.loadAnimation(this.context, com.faskn.coinstalker.R.anim.fade_out)
-
 
         viewModel.connectionStatusLiveData.observe(this@ConnectionFragment, Observer { status ->
             if (status) {
@@ -59,7 +67,7 @@ class ConnectionFragment : BaseFragment() {
             tv_error.startAnimation(animationFadeout)
 
 
-            object : CountDownTimer(3000, 1000) {
+            countDownTimer = object : CountDownTimer(3000, 1000) {
                 override fun onFinish() {
                     btn_tryagain.isEnabled = true
                     viewModel.checkConnectionStatus()
@@ -71,5 +79,9 @@ class ConnectionFragment : BaseFragment() {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        countDownTimer?.cancel()
+    }
 
 }

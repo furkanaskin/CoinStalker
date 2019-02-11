@@ -11,9 +11,9 @@ import com.faskn.coinstalker.R
 
 class ListPaddingDecoration(
     context: Context,
-    val paddingLeft: Int,
-    val paddingRight: Int,
-    val marginBetweenItems: Int
+    private val paddingLeft: Int,
+    private val paddingRight: Int,
+    private val marginBetweenItems: Int
 ) : RecyclerView.ItemDecoration() {
 
     private var mDivider: Drawable? = null

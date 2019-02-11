@@ -17,9 +17,12 @@ import kotlinx.android.synthetic.main.fragment_splash.*
 
 class SplashFragment : BaseFragment() {
 
-
     private val bottomNav by lazy { activity?.bottom_navigation }
     private val actionBar by lazy { activity?.toolbar }
+    private var countDownTimer: CountDownTimer? = null
+    private val animationFadeIn by lazy {
+        AnimationUtils.loadAnimation(this.context!!, com.faskn.coinstalker.R.anim.fade_in)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,19 +36,13 @@ class SplashFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val animationFadein =
-            AnimationUtils.loadAnimation(this.context, com.faskn.coinstalker.R.anim.fade_in)
-
-        iv_coinstalker.visibility = View.GONE
-
-        Glide.with(view.context).load(com.faskn.coinstalker.R.drawable.coinranking)
+        Glide.with(this.context!!).load(com.faskn.coinstalker.R.drawable.coinranking)
             .into(iv_coinRanking_logo)
 
         iv_coinstalker.visibility = View.VISIBLE
-        iv_coinstalker.startAnimation(animationFadein)
+        iv_coinstalker.startAnimation(animationFadeIn)
 
-
-        object : CountDownTimer(4000, 1000) {
+        countDownTimer = object : CountDownTimer(4000, 1000) {
             override fun onFinish() {
                 viewModel.checkConnectionStatus()
                 viewModel.connectionStatusLiveData.observe(this@SplashFragment, Observer { status ->
@@ -66,5 +63,10 @@ class SplashFragment : BaseFragment() {
             override fun onTick(millisUntilFinished: Long) {
             }
         }.start()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        countDownTimer?.cancel()
     }
 }
