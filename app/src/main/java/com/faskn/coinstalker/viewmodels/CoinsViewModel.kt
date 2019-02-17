@@ -9,12 +9,7 @@ import com.faskn.coinstalker.di.makeRetrofitService
 import com.faskn.coinstalker.model.CoinHistoryData
 import com.faskn.coinstalker.model.CoinInfoData
 import com.faskn.coinstalker.model.Data
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
-import java.util.*
-import kotlin.concurrent.schedule
+import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
 
@@ -58,9 +53,9 @@ class CoinsViewModel(application: Application) : AndroidViewModel(application), 
                 }
             }
 
-            Timer("getCoinsTimer", false).schedule(3000) {
-                getCoins(base, sort, timePeriod)
-            }
+            delay(10000)
+            getCoins(base, sort, timePeriod)
+
         }
     }
 

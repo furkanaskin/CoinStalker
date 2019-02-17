@@ -20,6 +20,7 @@ import java.math.BigDecimal
 
 
 class CoinViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
+
     @SuppressLint("SetTextI18n")
     fun bind(coin: Coin, base: Base, itemClickListener: (View, Int) -> Unit) {
 

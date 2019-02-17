@@ -92,9 +92,11 @@ class CoinsFragment : BaseFragment() {
 
         viewModel.getCoins(getBase(), getSort(), getTimePeriod()) // Get data
         viewModel.coinsLiveData.observe(this@CoinsFragment, Observer { Data ->
+
             // Observe the data
             val adapter = CoinAdapter(Data.coins as ArrayList<Coin>, Data.base, itemOnClick)
-            coinsRecyclerView.swapAdapter(adapter, false) // Pass data to adapter
+            coinsRecyclerView.adapter = adapter // Pass data to adapter
+
             pb_coins.visibility = View.GONE
             if (RECYCLER_ANIMATION_FLAG == 0) {
                 runLayoutAnimation(coinsRecyclerView)
