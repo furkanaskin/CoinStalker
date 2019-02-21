@@ -17,6 +17,7 @@ class ConverterFragment : BaseFragment() {
 
     private val coinNames by lazy { ArrayList<String>() }
     private var COIN_SPINNER_FLAG = 999
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,7 +49,6 @@ class ConverterFragment : BaseFragment() {
         })
 
 
-
         return view
     }
 
@@ -77,6 +77,7 @@ class ConverterFragment : BaseFragment() {
             ) {
                 val item = spinner.adapter.getItem(position)
                 textView.hint = item.toString()
+
             }
         }
     }

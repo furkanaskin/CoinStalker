@@ -95,14 +95,16 @@ class CoinsFragment : BaseFragment() {
 
             // Observe the data
             val adapter = CoinAdapter(Data.coins as ArrayList<Coin>, Data.base, itemOnClick)
-            coinsRecyclerView.adapter = adapter // Pass data to adapter
+            coinsRecyclerView.swapAdapter(adapter, false) // Pass data to adapter
 
             pb_coins.visibility = View.GONE
             if (RECYCLER_ANIMATION_FLAG == 0) {
                 runLayoutAnimation(coinsRecyclerView)
                 RECYCLER_ANIMATION_FLAG += 1
             }
+
         })
+
     }
 
     override fun onResume() {
