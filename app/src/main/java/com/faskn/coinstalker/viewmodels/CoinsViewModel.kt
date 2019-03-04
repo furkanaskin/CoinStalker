@@ -88,8 +88,6 @@ class CoinsViewModel(application: Application) : AndroidViewModel(application), 
                 Log.v("getCoinInfo", "Request Failed.")
                 connectionStatusLiveData.postValue(false)
 
-                delay(3000)
-                getCoinInfo(coinID, base)
             }
         }
     }
@@ -115,6 +113,7 @@ class CoinsViewModel(application: Application) : AndroidViewModel(application), 
             }
         }
     }
+
 
     override fun onCleared() {
         super.onCleared()

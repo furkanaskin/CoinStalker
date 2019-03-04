@@ -20,7 +20,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/gradient_graph">
+            android:background="@drawable/gradient_bottomnav">
 
             <com.mikhaellopez.circularimageview.CircularImageView
                 android:id="@+id/iv_converter_firstCoinLogo"
@@ -72,7 +72,7 @@
                 android:layout_width="2dp"
                 android:layout_height="160dp"
                 android:layout_centerHorizontal="true"
-                android:background="@drawable/gradient_bottomnav" />
+                android:background="@color/colorPrimary" />
 
 
         </RelativeLayout>
@@ -82,7 +82,7 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_converter"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
         android:layout_below="@id/card_coin_info"
         android:layout_margin="8dp"
         app:cardCornerRadius="4dp"
@@ -90,7 +90,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/colorPrimary">
 
             <com.google.android.material.textfield.TextInputLayout
@@ -100,12 +100,14 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:hint="@string/blank"
-                app:boxStrokeColor="@color/colorPrimary">
+                app:boxStrokeColor="@color/colorAccent">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_firstCoin"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -116,12 +118,14 @@
                 android:layout_alignParentEnd="true"
                 android:layout_margin="16dp"
                 android:hint="@string/blank"
-                app:boxStrokeColor="@color/colorPrimary">
+                app:boxStrokeColor="@color/colorAccent">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_secondCoin"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:maxLines="1"/>
             </com.google.android.material.textfield.TextInputLayout>
 
 

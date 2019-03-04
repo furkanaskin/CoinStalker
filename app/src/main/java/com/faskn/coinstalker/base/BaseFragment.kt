@@ -5,12 +5,12 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.faskn.coinstalker.utils.SharedPrefKey
 import com.faskn.coinstalker.viewmodels.CoinsViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import java.math.BigDecimal
 
 open class BaseFragment : Fragment() {
 
-    val viewModel: CoinsViewModel by viewModel()
+    val viewModel: CoinsViewModel by sharedViewModel()
 
     private val sharedPref by lazy {
         activity?.getSharedPreferences(

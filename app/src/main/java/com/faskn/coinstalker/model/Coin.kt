@@ -40,6 +40,8 @@ data class Coin(
     val rank: Int,
     @SerializedName("slug")
     val slug: String,
+    @SerializedName("socials")
+    val socials: List<Social>,
     @SerializedName("symbol")
     val symbol: String,
     @SerializedName("totalSupply")
