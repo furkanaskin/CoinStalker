@@ -23,6 +23,7 @@ This project about cryptocurrency coins. I create this project for improving my 
  - [Retrofit](https://square.github.io/retrofit/)
  - [Gson](https://github.com/google/gson)
  - [Glide](https://github.com/bumptech/glide)
+ - [Android SVG](http://bigbadaboom.github.io/androidsvg/)
  - [Material Design](https://material.io/develop/android/docs/getting-started/)
  - [Material CardView](https://material.io/develop/android/components/material-card-view/)
  - [RecyclerView](https://developer.android.com/guide/topics/ui/layout/recyclerview)
