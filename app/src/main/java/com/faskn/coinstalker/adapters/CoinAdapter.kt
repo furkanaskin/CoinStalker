@@ -30,4 +30,5 @@ class CoinAdapter(
     override fun onBindViewHolder(holder: CoinViewHolder, position: Int) {
         holder.bind(coinList[position], base, itemClickListener)
     }
+
 }

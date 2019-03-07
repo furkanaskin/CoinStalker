@@ -1,7 +1,6 @@
 package com.faskn.coinstalker.viewholders
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.graphics.Color
 import android.net.Uri
 import android.util.Log
@@ -11,15 +10,17 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
 import com.faskn.coinstalker.R
 import com.faskn.coinstalker.model.Base
 import com.faskn.coinstalker.model.Coin
-import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
 import com.mikhaellopez.circularimageview.CircularImageView
 import java.math.BigDecimal
 
 
 class CoinViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
+
 
     @SuppressLint("SetTextI18n")
     fun bind(coin: Coin, base: Base, itemClickListener: (View, Int) -> Unit) {
@@ -40,17 +41,40 @@ class CoinViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         if (coin.change < 0) {
             txtChange.text = coin.change.toString()
             txtChange.setTextColor(ContextCompat.getColor(view.context, R.color.colorNegative))
-            Glide.with(view.context).load(R.drawable.arrow_down).into(ivChanceArrow)
+            Glide.with(view.context)
+                .apply {
+                    RequestOptions().skipMemoryCache(false).diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .override(50, 50).fitCenter()
+                }
+                .asBitmap()
+                .load(R.drawable.arrow_down)
+                .thumbnail(0.5f)
+                .into(ivChanceArrow)
 
         } else {
             txtChange.text = "+${coin.change}"
             txtChange.setTextColor(ContextCompat.getColor(view.context, R.color.colorPosivite))
-            Glide.with(view.context).load(R.drawable.arrow_up).into(ivChanceArrow)
+            Glide.with(view.context)
+                .apply {
+                    RequestOptions().skipMemoryCache(false).diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .override(50, 50).fitCenter()
+                }
+                .asBitmap()
+                .load(R.drawable.arrow_up)
+                .thumbnail(0.5f)
+                .into(ivChanceArrow)
 
         }
 
         val uri: Uri = Uri.parse(coin.iconUrl)
-        GlideToVectorYou.justLoadImage(view.context as Activity, uri, ivCoinLogo)
+        Glide.with(itemView.context)
+            .apply {
+                RequestOptions().skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .override(50, 50).fitCenter()
+            }
+            .load(uri)
+            .thumbnail(0.5f)
+            .into(ivCoinLogo)
 
         try {
             val color = Color.parseColor(coin.color)
@@ -78,3 +102,4 @@ class CoinViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
     }
 
 }
+

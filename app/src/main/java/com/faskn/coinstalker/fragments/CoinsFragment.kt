@@ -19,13 +19,18 @@ import com.faskn.coinstalker.base.BaseFragment
 import com.faskn.coinstalker.model.Coin
 import com.faskn.coinstalker.utils.FilterDialogHelper
 import com.faskn.coinstalker.utils.ListPaddingDecoration
+import com.faskn.coinstalker.viewmodels.CoinsViewModel
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_coins.*
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class CoinsFragment : BaseFragment() {
+
+    val viewModel : CoinsViewModel by sharedViewModel()
 
     private val bottomNav by lazy { activity?.bottom_navigation }
     private val actionBar by lazy { activity?.toolbar }

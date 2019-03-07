@@ -11,11 +11,16 @@ import android.view.animation.AnimationUtils
 import androidx.lifecycle.Observer
 import com.faskn.coinstalker.R
 import com.faskn.coinstalker.base.BaseFragment
+import com.faskn.coinstalker.viewmodels.CoinsViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_connection.*
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class ConnectionFragment : BaseFragment() {
+
+    val viewModel : CoinsViewModel by sharedViewModel()
 
     private val bottomNav by lazy { activity?.bottom_navigation }
     private val toolbar by lazy { activity?.toolbar }

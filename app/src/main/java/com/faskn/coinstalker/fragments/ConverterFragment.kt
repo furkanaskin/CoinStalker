@@ -12,14 +12,18 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.lifecycle.Observer
+import com.bumptech.glide.Glide
 import com.faskn.coinstalker.R
 import com.faskn.coinstalker.base.BaseFragment
-import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
+import com.faskn.coinstalker.viewmodels.CoinsViewModel
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.fragment_converter.*
-
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ConverterFragment : BaseFragment() {
+
+    val viewModel : CoinsViewModel by sharedViewModel()
 
     private val coinNames by lazy { ArrayList<String>() }
     private val coinImageUrls by lazy { ArrayList<String>() }
@@ -118,22 +122,17 @@ class ConverterFragment : BaseFragment() {
 
                     firstCoinIndex = position
                     val firstCoinURI: Uri = Uri.parse(coinImageUrls[position])
-                    GlideToVectorYou.justLoadImage(
-                        view.context as Activity,
-                        firstCoinURI,
-                        iv_converter_firstCoinLogo
-                    )
+                    Glide.with(view.context as Activity).load(firstCoinURI)
+                        .into(iv_converter_firstCoinLogo)
                 }
 
                 if (spinner == spinner_secondCoin && view != null) {
 
                     secondCoinIndex = position
                     val secondCoinURI: Uri = Uri.parse(coinImageUrls[position])
-                    GlideToVectorYou.justLoadImage(
-                        view.context as Activity,
-                        secondCoinURI,
-                        iv_converter_secondCoinLogo
-                    )
+
+                    Glide.with(view.context as Activity).load(secondCoinURI)
+                        .into(iv_converter_secondCoinLogo)
                 }
             }
         }

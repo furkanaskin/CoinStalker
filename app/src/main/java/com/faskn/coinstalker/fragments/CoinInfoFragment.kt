@@ -19,6 +19,7 @@ import com.bumptech.glide.Glide
 import com.faskn.coinstalker.R
 import com.faskn.coinstalker.base.BaseFragment
 import com.faskn.coinstalker.utils.MyFormatter
+import com.faskn.coinstalker.viewmodels.CoinsViewModel
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.BarData
@@ -27,12 +28,14 @@ import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
-import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
 import kotlinx.android.synthetic.main.fragment_coin_info.*
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import kotlin.properties.Delegates
 
 
 class CoinInfoFragment : BaseFragment() {
+
+    val viewModel: CoinsViewModel by sharedViewModel()
 
     private var expandableLayout: ExpandableRelativeLayout by Delegates.notNull()
     private lateinit var commentCoinSymbol: String // Define a string for CommentsFragment bundle.
@@ -113,7 +116,7 @@ class CoinInfoFragment : BaseFragment() {
             tv_infoDetail_totalSupply.text = "${Data.coin.totalSupply} Adet"
 
             val uri: Uri = Uri.parse(Data.coin.iconUrl)
-            GlideToVectorYou.justLoadImage(view.context as? Activity, uri, iv_info_coinLogo)
+            Glide.with(view.context as Activity).load(uri).into(iv_info_coinLogo)
             try {
                 val color = Color.parseColor(Data.coin.color)
                 iv_info_coinLogo.setBorderColor(color)
