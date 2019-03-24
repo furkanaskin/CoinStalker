@@ -59,14 +59,10 @@ class CoinsViewModel(application: Application) : AndroidViewModel(application), 
                     }
                 }
 
-                delay(3000)
-                getCoins(base, sort, timePeriod)
-
             } catch (e: Exception) {
                 Log.v("getCoins", "Request Failed.")
                 connectionStatusLiveData.postValue(false)
-
-                delay(3000)
+                delay(3000) // For safety.
                 getCoins(base, sort, timePeriod)
             }
         }
@@ -86,6 +82,7 @@ class CoinsViewModel(application: Application) : AndroidViewModel(application), 
 
             } catch (e: Exception) {
                 Log.v("getCoinInfo", "Request Failed.")
+                delay(3000) // For safety.
                 connectionStatusLiveData.postValue(false)
 
             }
@@ -108,7 +105,7 @@ class CoinsViewModel(application: Application) : AndroidViewModel(application), 
                 Log.v("getCoinHistory", "Request Failed.")
                 connectionStatusLiveData.postValue(false)
 
-                delay(3000)
+                delay(3000) // For safety.
                 getCoinHistory(coinID, base)
             }
         }

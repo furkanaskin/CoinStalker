@@ -1,4 +1,4 @@
-package com.faskn.coinstalker.activities
+package com.faskn.coinstalker.ui.activities
 
 import android.os.Bundle
 import android.widget.Toast

@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.faskn.coinstalker.fragments.SplashFragment"
+        android:name="com.faskn.coinstalker.ui.fragments.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash">
         <action
@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/coinsFragment"
-        android:name="com.faskn.coinstalker.fragments.CoinsFragment"
+        android:name="com.faskn.coinstalker.ui.fragments.CoinsFragment"
         android:label="fragment_coins"
         tools:layout="@layout/fragment_coins">
         <action
@@ -39,7 +39,7 @@
     </fragment>
     <fragment
         android:id="@+id/connectionFragment"
-        android:name="com.faskn.coinstalker.fragments.ConnectionFragment"
+        android:name="com.faskn.coinstalker.ui.fragments.ConnectionFragment"
         android:label="fragment_connection"
         tools:layout="@layout/fragment_connection">
         <action
@@ -49,12 +49,12 @@
     </fragment>
     <fragment
         android:id="@+id/converterFragment"
-        android:name="com.faskn.coinstalker.fragments.ConverterFragment"
+        android:name="com.faskn.coinstalker.ui.fragments.ConverterFragment"
         android:label="fragment_converter"
         tools:layout="@layout/fragment_converter" />
     <fragment
         android:id="@+id/coinInfoFragment"
-        android:name="com.faskn.coinstalker.fragments.CoinInfoFragment"
+        android:name="com.faskn.coinstalker.ui.fragments.CoinInfoFragment"
         android:label="fragment_coin_info"
         tools:layout="@layout/fragment_coin_info">
         <argument

@@ -16,19 +16,14 @@
             android:layout_height="wrap_content"
             android:background="@color/colorPrimaryDark">
 
-            <com.mikhaellopez.circularimageview.CircularImageView
+            <ImageView
                 android:id="@+id/iv_coinLogo"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                app:civ_border_width="2dp"
-                app:civ_shadow="true"
-                app:civ_shadow_radius="8"
-                app:civ_shadow_color="@color/colorPrimaryDark"
-                app:civ_border_color="@color/colorPrettyOrange" />
-
+                android:scaleType="fitCenter" />
             <TextView
                 android:id="@+id/tv_coinFullName"
                 android:layout_width="wrap_content"

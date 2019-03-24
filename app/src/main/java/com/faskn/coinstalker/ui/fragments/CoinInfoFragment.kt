@@ -1,4 +1,4 @@
-package com.faskn.coinstalker.fragments
+package com.faskn.coinstalker.ui.fragments
 
 
 import android.annotation.SuppressLint
@@ -19,7 +19,6 @@ import com.bumptech.glide.Glide
 import com.faskn.coinstalker.R
 import com.faskn.coinstalker.base.BaseFragment
 import com.faskn.coinstalker.utils.MyFormatter
-import com.faskn.coinstalker.viewmodels.CoinsViewModel
 import com.github.aakira.expandablelayout.ExpandableRelativeLayout
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.BarData
@@ -29,13 +28,10 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import kotlinx.android.synthetic.main.fragment_coin_info.*
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import kotlin.properties.Delegates
 
 
 class CoinInfoFragment : BaseFragment() {
-
-    val viewModel: CoinsViewModel by sharedViewModel()
 
     private var expandableLayout: ExpandableRelativeLayout by Delegates.notNull()
     private lateinit var commentCoinSymbol: String // Define a string for CommentsFragment bundle.

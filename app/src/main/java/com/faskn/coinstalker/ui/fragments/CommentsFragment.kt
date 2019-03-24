@@ -1,4 +1,4 @@
-package com.faskn.coinstalker.fragments
+package com.faskn.coinstalker.ui.fragments
 
 
 import android.os.Bundle
@@ -11,20 +11,15 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.faskn.coinstalker.R
-import com.faskn.coinstalker.activities.MainActivity
-import com.faskn.coinstalker.adapters.CommentsAdapter
 import com.faskn.coinstalker.model.CommentsDTO
-import com.faskn.coinstalker.viewmodels.CoinsViewModel
+import com.faskn.coinstalker.ui.activities.MainActivity
+import com.faskn.coinstalker.ui.adapters.CommentsAdapter
 import com.google.firebase.FirebaseApp
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.container_commentbox.*
 import kotlinx.android.synthetic.main.fragment_comments.*
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CommentsFragment : Fragment() {
-
-    val viewModel : CoinsViewModel by sharedViewModel()
 
     var databaseReference: DatabaseReference? = null
 

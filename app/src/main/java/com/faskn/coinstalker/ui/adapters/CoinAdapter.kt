@@ -1,4 +1,4 @@
-package com.faskn.coinstalker.adapters
+package com.faskn.coinstalker.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.faskn.coinstalker.R
 import com.faskn.coinstalker.model.Base
 import com.faskn.coinstalker.model.Coin
-import com.faskn.coinstalker.viewholders.CoinViewHolder
+import com.faskn.coinstalker.ui.viewholders.CoinViewHolder
 
 class CoinAdapter(
     private val coinList: ArrayList<Coin>,

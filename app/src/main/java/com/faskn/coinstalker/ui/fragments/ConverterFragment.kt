@@ -1,4 +1,4 @@
-package com.faskn.coinstalker.fragments
+package com.faskn.coinstalker.ui.fragments
 
 
 import android.app.Activity
@@ -15,15 +15,10 @@ import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.faskn.coinstalker.R
 import com.faskn.coinstalker.base.BaseFragment
-import com.faskn.coinstalker.viewmodels.CoinsViewModel
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.fragment_converter.*
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ConverterFragment : BaseFragment() {
-
-    val viewModel : CoinsViewModel by sharedViewModel()
 
     private val coinNames by lazy { ArrayList<String>() }
     private val coinImageUrls by lazy { ArrayList<String>() }

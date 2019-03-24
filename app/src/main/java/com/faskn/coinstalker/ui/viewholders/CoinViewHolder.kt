@@ -1,4 +1,4 @@
-package com.faskn.coinstalker.viewholders
+package com.faskn.coinstalker.ui.viewholders
 
 import android.annotation.SuppressLint
 import android.graphics.Color
@@ -15,7 +15,6 @@ import com.bumptech.glide.request.RequestOptions
 import com.faskn.coinstalker.R
 import com.faskn.coinstalker.model.Base
 import com.faskn.coinstalker.model.Coin
-import com.mikhaellopez.circularimageview.CircularImageView
 import java.math.BigDecimal
 
 
@@ -29,7 +28,7 @@ class CoinViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         val txtFullCoinName: TextView = view.findViewById(R.id.tv_coinFullName)
         val txtPrice: TextView = view.findViewById(R.id.tv_coin_price)
         val txtChange: TextView = view.findViewById(R.id.tv_coin_change)
-        val ivCoinLogo: CircularImageView = view.findViewById(R.id.iv_coinLogo)
+        val ivCoinLogo: ImageView = view.findViewById(R.id.iv_coinLogo)
         val ivChanceArrow: ImageView = view.findViewById(R.id.iv_chance_arrow)
 
         txtShortCoinName.text = coin.symbol
@@ -70,18 +69,11 @@ class CoinViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         Glide.with(itemView.context)
             .apply {
                 RequestOptions().skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .override(50, 50).fitCenter()
+                    .override(40, 40).centerCrop()
             }
             .load(uri)
             .thumbnail(0.5f)
             .into(ivCoinLogo)
-
-        try {
-            val color = Color.parseColor(coin.color)
-            ivCoinLogo.setBorderColor(color)
-        } catch (e: java.lang.Exception) {
-            Log.e("BorderColor", "Cannot set border color. Exception : $e")
-        }
 
         try {
             val color = Color.parseColor(coin.color)

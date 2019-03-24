@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
     android:paddingBottom="?attr/actionBarSize"
-    tools:context=".fragments.CoinInfoFragment"
+    tools:context=".ui.fragments.CoinInfoFragment"
     android:id="@+id/sv_fragmentInfo">
 
     <RelativeLayout

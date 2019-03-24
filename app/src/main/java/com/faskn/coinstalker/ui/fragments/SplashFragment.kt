@@ -1,4 +1,4 @@
-package com.faskn.coinstalker.fragments
+package com.faskn.coinstalker.ui.fragments
 
 
 import android.os.Bundle
@@ -11,17 +11,11 @@ import android.view.animation.AnimationUtils
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.faskn.coinstalker.base.BaseFragment
-import com.faskn.coinstalker.viewmodels.CoinsViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_splash.*
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class SplashFragment : BaseFragment() {
-
-    val viewModel : CoinsViewModel by sharedViewModel()
-
 
     private val bottomNav by lazy { activity?.bottom_navigation }
     private val actionBar by lazy { activity?.toolbar }

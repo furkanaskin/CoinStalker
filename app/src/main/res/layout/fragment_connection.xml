@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
-    tools:context=".fragments.ConnectionFragment">
+    tools:context=".ui.fragments.ConnectionFragment">
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/av_connection_animation"

@@ -1,4 +1,4 @@
-package com.faskn.coinstalker.adapters
+package com.faskn.coinstalker.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.View
