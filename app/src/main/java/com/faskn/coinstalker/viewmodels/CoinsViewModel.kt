@@ -97,6 +97,7 @@ class CoinsViewModel(application: Application) : AndroidViewModel(application), 
                 val coinHistoryData = service.getCoinHistory(coinID, base).await()
                 val coinHistory = coinHistoryData.body()!!.data
 
+
                 if (coinHistoryData.isSuccessful) {
                     connectionStatusLiveData.postValue(true)
                     coinHistoryLiveData.postValue(coinHistory)

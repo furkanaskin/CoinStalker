@@ -30,6 +30,7 @@ This project about cryptocurrency coins. I create this project for improving my 
  - [ExpandableLayout](https://github.com/AAkira/ExpandableLayout)
  - [Lottie for Android](https://github.com/airbnb/lottie-android)
  - [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart)
+ - [CircularImageView](https://github.com/lopspower/CircularImageView)
  
 ## Future Development
 

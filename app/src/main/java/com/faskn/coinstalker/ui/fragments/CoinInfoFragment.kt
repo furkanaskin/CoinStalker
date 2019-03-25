@@ -28,12 +28,11 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import kotlinx.android.synthetic.main.fragment_coin_info.*
-import kotlin.properties.Delegates
 
 
 class CoinInfoFragment : BaseFragment() {
 
-    private var expandableLayout: ExpandableRelativeLayout by Delegates.notNull()
+    private lateinit var expandableLayout: ExpandableRelativeLayout
     private lateinit var commentCoinSymbol: String // Define a string for CommentsFragment bundle.
     private lateinit var commentCoinSign: String
     private val animationFadein by lazy {
@@ -130,13 +129,19 @@ class CoinInfoFragment : BaseFragment() {
         val timestampArray = ArrayList<Float>()
         viewModel.coinHistoryLiveData.observe(this@CoinInfoFragment, Observer { Data ->
 
+            // Clear the previous data
+            if (barGroup.size > 0) {
+                barGroup.clear()
+                timestampArray.clear()
+            }
+
             // Data filling stuffs(BarChart) starts here..
             Data.history.forEachIndexed { index, element ->
                 val formattedTimeStamp = (element.timestamp / 10000).toFloat()
                 timestampArray.add(formattedTimeStamp)
                 barGroup.add(BarEntry(index.toFloat(), element.price.toFloat()))
             }
-            // creating data set for Bar Group
+            // Creating data set for Bar Group
             val barDataSet = BarDataSet(barGroup, "24 Saatlik değerler")
 
             barDataSet.color = ContextCompat.getColor(
@@ -214,5 +219,6 @@ class CoinInfoFragment : BaseFragment() {
     fun getCoinID(): Int {
         return CoinInfoFragmentArgs.fromBundle(this.arguments!!).coinID
     }
+
 }
 
