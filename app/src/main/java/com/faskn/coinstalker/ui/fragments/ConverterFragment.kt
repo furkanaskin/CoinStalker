@@ -20,11 +20,12 @@ import kotlinx.android.synthetic.main.fragment_converter.*
 
 class ConverterFragment : BaseFragment() {
 
+    private val coinList by lazy { HashMap<String, Int>() }
     private val coinNames by lazy { ArrayList<String>() }
     private val coinImageUrls by lazy { ArrayList<String>() }
     private var COIN_SPINNER_FLAG = 999
-    private var firstCoinIndex: Int = 0
-    private var secondCoinIndex: Int = 0
+    private var firstCoinID: Int = 0
+    private lateinit var secondCoinSymbol: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,6 +40,7 @@ class ConverterFragment : BaseFragment() {
         viewModel.coinsLiveData.observe(this@ConverterFragment, Observer { Data ->
             if (COIN_SPINNER_FLAG != 0) {
                 Data.coins.forEachIndexed { index, element ->
+                    coinList.put(element.symbol, element.id)
                     coinNames.add(element.symbol)
                     coinImageUrls.add(element.iconUrl)
                     COIN_SPINNER_FLAG = 0
@@ -80,8 +82,8 @@ class ConverterFragment : BaseFragment() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if (!edt_firstCoin.text.toString().isEmpty()) {
                     viewModel.getCoinInfo(
-                        firstCoinIndex,
-                        spinner_secondCoin.adapter.getItem(secondCoinIndex).toString()
+                        firstCoinID,
+                        secondCoinSymbol
                     )
                     viewModel.coinInfoLiveData.observe(this@ConverterFragment, Observer { Data ->
                         try {
@@ -115,7 +117,7 @@ class ConverterFragment : BaseFragment() {
 
                 if (spinner == spinner_firstCoin && view != null) {
 
-                    firstCoinIndex = position
+                    firstCoinID = coinList[item.toString()]!!
                     val firstCoinURI: Uri = Uri.parse(coinImageUrls[position])
                     Glide.with(view.context as Activity).load(firstCoinURI)
                         .into(iv_converter_firstCoinLogo)
@@ -123,7 +125,7 @@ class ConverterFragment : BaseFragment() {
 
                 if (spinner == spinner_secondCoin && view != null) {
 
-                    secondCoinIndex = position
+                    secondCoinSymbol = item.toString()
                     val secondCoinURI: Uri = Uri.parse(coinImageUrls[position])
 
                     Glide.with(view.context as Activity).load(secondCoinURI)
